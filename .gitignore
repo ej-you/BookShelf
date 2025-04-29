@@ -1,0 +1,9 @@
+# DB
+/db
+
+# Environments
+.env
+
+# Local
+/.vscode
+notes.txt
