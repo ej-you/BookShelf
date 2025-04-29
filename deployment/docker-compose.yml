@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: ../build/Dockerfile
+    container_name: book_shelf_app
+    restart: always
+    env_file:
+      - ../config/.env
+    volumes:
+      - ./db:/app/db:rw
+    ports:
+      - "127.0.0.1:8080:8080"
