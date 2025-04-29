@@ -1,3 +1,5 @@
+// Package config provides loading config data from external sources
+// like env variables, yaml-files etc.
 package config
 
 import (
@@ -23,7 +25,7 @@ type (
 	}
 )
 
-// Returns app config loaded from ENV-vars
+// Returns app config loaded from ENV-vars.
 func New() (*Config, error) {
 	cfg := &Config{}
 

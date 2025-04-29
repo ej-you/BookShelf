@@ -1,3 +1,4 @@
+// Package entity contains all app entities
 package entity
 
 type User struct {
