@@ -4,7 +4,6 @@ package auth
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v5"
@@ -12,7 +11,7 @@ import (
 )
 
 // Generate new auth token for user.
-func NewToken(secretKey []byte, expireDuration time.Duration, userID int) (string, error) {
+func NewToken(secretKey []byte, expireDuration time.Duration, userID string) (string, error) {
 	tokenStruct := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": userID,
 		"exp": time.Now().UTC().Add(expireDuration).Unix(),
@@ -23,23 +22,18 @@ func NewToken(secretKey []byte, expireDuration time.Duration, userID int) (strin
 }
 
 // Parse user ID from given auth token.
-func ParseUserIDFromToken(secretKey any, authToken string) (int, error) {
+func ParseUserIDFromToken(secretKey any, authToken string) (string, error) {
 	// parse token object from token string representation
 	jwtToken, err := jwt.Parse(authToken, func(_ *jwt.Token) (any, error) {
 		return secretKey, nil
 	})
 	if err != nil {
-		return 0, fmt.Errorf("parse auth token: %w", err)
+		return "", fmt.Errorf("parse auth token: %w", err)
 	}
-	// parse user ID from token as string
-	stringUserID, err := jwtToken.Claims.GetSubject()
+	// parse user ID from token
+	userID, err := jwtToken.Claims.GetSubject()
 	if err != nil {
-		return 0, fmt.Errorf("parse user id from auth token: %w", err)
+		return "", fmt.Errorf("parse user id from auth token: %w", err)
 	}
-	// convert string user ID to int
-	intUserID, err := strconv.Atoi(stringUserID)
-	if err != nil {
-		return 0, fmt.Errorf("parse user id value: %w", err)
-	}
-	return intUserID, nil
+	return userID, nil
 }

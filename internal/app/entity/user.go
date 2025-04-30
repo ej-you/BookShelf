@@ -2,7 +2,7 @@
 package entity
 
 type User struct {
-	ID       int    `gorm:"primaryKey;autoIncrement"`
+	ID       string `gorm:"primaryKey;autoIncrement;type:INTEGER"`
 	Login    string `gorm:"not null;size:50"`
 	Password []byte `gorm:"not null;type:BLOB"`
 

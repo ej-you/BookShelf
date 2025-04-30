@@ -1,7 +1,7 @@
 package entity
 
 type Book struct {
-	ID          int    `gorm:"primaryKey;autoIncrement"`
+	ID          string `gorm:"primaryKey;autoIncrement;type:INTEGER"`
 	UserID      string `gorm:"not null"`
 	Title       string `gorm:"not null;size:150"`
 	GenreID     string `gorm:"null"`

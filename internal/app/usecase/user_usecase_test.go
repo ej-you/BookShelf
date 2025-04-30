@@ -29,8 +29,8 @@ func TestSignUp(t *testing.T) {
 	userUC := NewUserUsecase(mockRepo, _tokenSigningKey, _tokenTTL)
 
 	// create test users
-	var newUser = &entity.User{ID: 1, Login: _newLogin, Password: _password}
-	var existingUser = &entity.User{ID: 2, Login: _existingLogin, Password: _password}
+	var newUser = &entity.User{ID: "1", Login: _newLogin, Password: _password}
+	var existingUser = &entity.User{ID: "2", Login: _existingLogin, Password: _password}
 
 	// setup mock expectations
 	mockRepo.On("Create", mock.MatchUserByLogin(_newLogin)).Return(nil)
@@ -56,9 +56,9 @@ func TestLogin(t *testing.T) {
 	userUC := NewUserUsecase(mockRepo, _tokenSigningKey, _tokenTTL)
 
 	// create test users
-	var existingUser = &entity.User{ID: 1, Login: _existingLogin, Password: _password}
-	var newUser = &entity.User{ID: 2, Login: _newLogin, Password: _password}
-	var withInvalidPassword = &entity.User{ID: 3, Login: _existingLogin, Password: _invalid_passwd}
+	var existingUser = &entity.User{ID: "1", Login: _existingLogin, Password: _password}
+	var newUser = &entity.User{ID: "2", Login: _newLogin, Password: _password}
+	var withInvalidPassword = &entity.User{ID: "3", Login: _existingLogin, Password: _invalid_passwd}
 
 	// setup mock expectations
 	mockRepo.On("GetByLogin", mock.MatchUserByLogin(_existingLogin)).Return(nil)

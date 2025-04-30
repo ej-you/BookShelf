@@ -1,7 +1,7 @@
 package entity
 
 type Genre struct {
-	ID   int    `gorm:"primaryKey;autoIncrement"`
+	ID   string `gorm:"primaryKey;autoIncrement;type:INTEGER"`
 	Name string `gorm:"not null;size:50;unique"`
 }
 
