@@ -13,3 +13,7 @@ type Book struct {
 	User  User  `gorm:"foreignKey:UserID"`
 	Genre Genre `gorm:"foreignKey:GenreID"`
 }
+
+func (Book) TableName() string {
+	return "book"
+}

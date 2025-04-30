@@ -1,4 +1,4 @@
-// App binary starts web application
+// App binary starts web application.
 package main
 
 import (
