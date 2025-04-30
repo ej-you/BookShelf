@@ -16,12 +16,13 @@ type (
 	}
 
 	App struct {
-		Port         string        `env:"APP_PORT" env-default:"8080" env-description:"app port (default: 8080)"`
-		TokenExpired time.Duration `env:"TOKEN_EXPIRED" env-default:"30m" env-description:"JWT token expired duration (default: 30m)"`
+		Port            string        `env:"APP_PORT" env-default:"8080"`
+		AuthTokenSecret []byte        `env-required:"true" env:"AUTH_TOKEN_SECRET"`
+		AuthTokenTTL    time.Duration `env:"AUTH_TOKEN_TTL" env-default:"30m"`
 	}
 
 	DB struct {
-		Path string `env-required:"true" env:"DB_PATH" env-description:"Path to SQLite db"`
+		Path string `env-required:"true" env:"DB_PATH"`
 	}
 )
 
