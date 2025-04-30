@@ -24,6 +24,7 @@ linters:
     - goprintffuncname
     - gosec
     - ineffassign
+    - lll
     - makezero
     - misspell
     - mnd
@@ -51,6 +52,8 @@ linters:
       enable-all: true
     gocyclo:
       min-complexity: 10
+    lll:
+      line-length: 99
     nestif:
       min-complexity: 3
     prealloc:
