@@ -14,6 +14,6 @@ func (User) TableName() string {
 }
 
 type UserWithToken struct {
-	User      User
+	User      *User
 	AuthToken string
 }

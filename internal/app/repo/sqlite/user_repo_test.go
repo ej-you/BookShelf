@@ -1,4 +1,4 @@
-package repo
+package sqlite
 
 import (
 	"log"
@@ -7,19 +7,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"BookShelf/internal/app/entity"
 	"BookShelf/internal/app/errors"
+	"BookShelf/internal/app/repo"
 	"BookShelf/internal/pkg/db"
 )
 
 const (
-	_dbPath = "../../../db/sqlite3.db"
+	_dbPath = "../../../../db/sqlite3.db"
 )
 
 var (
-	_dbRepo UserRepoDB
+	_dbRepo repo.UserRepoDB
 	_uid    string
 )
 
@@ -55,7 +56,7 @@ func TestCreate(t *testing.T) {
 	}
 
 	err := _dbRepo.Create(&newUser)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 
 	t.Logf("New user: %+v", newUser)
 }
@@ -69,7 +70,7 @@ func TestCreateDuplicate(t *testing.T) {
 	}
 
 	err := _dbRepo.Create(&newUser)
-	assert.ErrorIs(t, err, errors.ErrAlreadyExists)
+	require.ErrorIs(t, err, errors.ErrAlreadyExists)
 }
 
 func TestGetByLogin(t *testing.T) {
@@ -78,7 +79,7 @@ func TestGetByLogin(t *testing.T) {
 	existingUser := entity.User{Login: "new_user_" + _uid}
 
 	err := _dbRepo.GetByLogin(&existingUser)
-	assert.NoError(t, err)
+	require.NoError(t, err)
 
 	t.Logf("Existing user: %+v", existingUser)
 }
@@ -89,5 +90,5 @@ func TestGetByLoginUnexisting(t *testing.T) {
 	unexistingUser := entity.User{Login: "new_user"}
 
 	err := _dbRepo.GetByLogin(&unexistingUser)
-	assert.ErrorIs(t, err, errors.ErrNotFound)
+	require.ErrorIs(t, err, errors.ErrNotFound)
 }

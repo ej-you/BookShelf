@@ -1,6 +1,6 @@
-// Package repo contains interfaces of repositories
-// and its implementations for all entities like
-// DB repositories or cache repositories etc.
+// Package repo contains interfaces of repositories for all entities.
+// Its implementations like DB repositories, mocks,
+// etc. are in sub-packages with the same names.
 package repo
 
 import (

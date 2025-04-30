@@ -1,4 +1,6 @@
-package repo
+// Package repodb contains implementations for repo interfaces
+// that use a DB as a data source.
+package sqlite
 
 import (
 	goerrors "github.com/pkg/errors"
@@ -6,16 +8,17 @@ import (
 
 	"BookShelf/internal/app/entity"
 	"BookShelf/internal/app/errors"
+	"BookShelf/internal/app/repo"
 )
 
-var _ UserRepoDB = (*userRepoDB)(nil)
+var _ repo.UserRepoDB = (*userRepoDB)(nil)
 
 // UserRepoDB implementation.
 type userRepoDB struct {
 	dbStorage *gorm.DB
 }
 
-func NewUserRepoDB(dbStorage *gorm.DB) UserRepoDB {
+func NewUserRepoDB(dbStorage *gorm.DB) repo.UserRepoDB {
 	return &userRepoDB{
 		dbStorage: dbStorage,
 	}
@@ -34,7 +37,7 @@ func (u *userRepoDB) GetByLogin(user *entity.User) error {
 }
 
 // Create new user.
-// All required fields must be presented. All optional fields are optional.
+// All required fields must be presented.
 func (u *userRepoDB) Create(user *entity.User) error {
 	err := u.dbStorage.Create(user).Error
 

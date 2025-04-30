@@ -5,6 +5,7 @@ package errors
 import goerrors "errors"
 
 var (
-	ErrNotFound      = goerrors.New("record not found")
-	ErrAlreadyExists = goerrors.New("record already exists")
+	ErrInvalidPassword = goerrors.New("invalid password")      // 401
+	ErrNotFound        = goerrors.New("record not found")      // 404
+	ErrAlreadyExists   = goerrors.New("record already exists") // 409
 )

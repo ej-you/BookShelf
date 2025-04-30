@@ -13,7 +13,7 @@ func Encode(password []byte) ([]byte, error) {
 	return hash, errors.Wrap(err, "encode password")
 }
 
-// Check the given password (not hash) is equal to its hash from DB
+// Check the given password (not hashed) is equal to its hash from DB
 // Returns true, if passwords are equal.
 func IsCorrect(password, hash []byte) bool {
 	return bcrypt.CompareHashAndPassword(hash, password) == nil
