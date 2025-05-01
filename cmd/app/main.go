@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"BookShelf/config"
+	"BookShelf/internal/app"
 )
 
 func main() {
@@ -13,7 +14,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Config: %+v", cfg)
 
-	// TODO: run app
+	// create app
+	application, err := app.New(cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// run app
+	if err := application.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
