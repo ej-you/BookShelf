@@ -16,9 +16,10 @@ type (
 	}
 
 	App struct {
-		Port            string        `env:"APP_PORT" env-default:"8080"`
-		AuthTokenSecret []byte        `env-required:"true" env:"AUTH_TOKEN_SECRET"`
-		AuthTokenTTL    time.Duration `env:"AUTH_TOKEN_TTL" env-default:"30m"`
+		Port             string        `env:"APP_PORT" env-default:"8080"`
+		AuthTokenSecret  []byte        `env-required:"true" env:"AUTH_TOKEN_SECRET"`
+		AuthTokenTTL     time.Duration `env:"AUTH_TOKEN_TTL" env-default:"30m"`
+		KeepAliveTimeout time.Duration `env:"KEEP_ALIVE_TIMEOUT" env-default:"60s"`
 	}
 
 	DB struct {

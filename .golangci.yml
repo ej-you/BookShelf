@@ -69,11 +69,16 @@ linters:
       - common-false-positives
       - legacy
       - std-error-handling
-    # rules:
-    #   - linters:
-    #       - mnd
-    #     path: internal/pkg/utils/http\.go
-    #     text: "Magic number: 2, in <return> detected"
+    rules:
+      - linters:
+          - errcheck
+        path: internal/app/app\.go
+        text: "Error return value of `fiberApp.ShutdownWithTimeout` is not checked" # cannot occur
+      - linters:
+          - gocritic
+        path: internal/app/delivery/http/register\.go
+        text: "unnecessaryBlock: block doesn't have definitions, can be simply deleted" # more readable
+
     # paths:
     #   - docs
 
