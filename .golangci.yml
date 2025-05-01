@@ -78,9 +78,12 @@ linters:
           - gocritic
         path: internal/app/delivery/http/register\.go
         text: "unnecessaryBlock: block doesn't have definitions, can be simply deleted" # more readable
-
-    # paths:
-    #   - docs
+    paths:
+      - build
+      - db
+      - deployment
+      - migration
+      - web
 
 issues:
   fix: false
@@ -89,7 +92,3 @@ formatters:
   enable:
     - gofmt
     - goimports
-  # exclusions:
-  #   generated: lax
-  #   paths:
-  #     - internal/repository/restapi/rest_api\.go
