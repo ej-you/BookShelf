@@ -48,7 +48,7 @@ nav {
 	margin: 10px 15px;
 }
 
-.nav-elem a {
+.nav-elem>* {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -67,7 +67,11 @@ nav {
 	flex-grow: 1;
 }
 
-.logo a img {
+.logo>* {
+	cursor: default;
+}
+
+.logo img {
 	width: 48px;
 }
 
