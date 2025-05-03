@@ -7,6 +7,8 @@ import (
 	fiber "github.com/gofiber/fiber/v2"
 )
 
+const _expiresToClear = -(24 * time.Hour)
+
 var _ Builder = (*builder)(nil)
 
 type Builder interface {
@@ -91,7 +93,7 @@ func (b builder) CreateCookie(key, value string) *fiber.Cookie {
 func (b builder) ClearCookie(key string) *fiber.Cookie {
 	emptyCookie := b.emptyCookie()
 	emptyCookie.Name = key
-	emptyCookie.Expires = emptyCookie.Expires.Add(-time.Hour)
+	emptyCookie.Expires = emptyCookie.Expires.Add(_expiresToClear)
 	return emptyCookie
 }
 
