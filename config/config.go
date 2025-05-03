@@ -12,6 +12,7 @@ import (
 type (
 	Config struct {
 		App
+		Cookie `env-prefix:"COOKIE_"`
 		DB
 	}
 
@@ -20,6 +21,13 @@ type (
 		AuthTokenSecret  []byte        `env-required:"true" env:"AUTH_TOKEN_SECRET"`
 		AuthTokenTTL     time.Duration `env:"AUTH_TOKEN_TTL" env-default:"30m"`
 		KeepAliveTimeout time.Duration `env:"KEEP_ALIVE_TIMEOUT" env-default:"60s"`
+	}
+
+	Cookie struct {
+		Path     string `env:"PATH" env-default:""`
+		Secure   bool   `env:"SECURE" env-default:"false"`
+		HTTPOnly bool   `env:"HTTP_ONLY" env-default:"false"`
+		SameSite string `env:"SAME_SITE" env-default:""`
 	}
 
 	DB struct {

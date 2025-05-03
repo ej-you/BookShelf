@@ -18,8 +18,10 @@ import (
 	"BookShelf/internal/app/middleware"
 	"BookShelf/internal/app/repo/sqlite"
 	"BookShelf/internal/app/usecase"
+	"BookShelf/internal/pkg/cookie"
 	"BookShelf/internal/pkg/db"
 	"BookShelf/internal/pkg/logger"
+	"BookShelf/internal/pkg/validator"
 )
 
 var _ App = (*app)(nil)
@@ -34,6 +36,8 @@ type app struct {
 	cfg            *config.Config
 	log            logger.Logger
 	templateEngine fiber.Views
+	valid          validator.Validator
+	cookieBuilder  cookie.Builder
 	dbStorage      *gorm.DB
 }
 
@@ -41,6 +45,13 @@ type app struct {
 func New(cfg *config.Config) (App, error) {
 	log := logger.NewLogger()
 	templateEngine := django.New("./web/template", ".html")
+	valid := validator.NewValidator()
+	cookieBuilder := cookie.NewBuilder(cfg.App.AuthTokenTTL,
+		cookie.WithPath(cfg.Cookie.Path),
+		cookie.WithSecure(cfg.Cookie.Secure),
+		cookie.WithHTTPOnly(cfg.Cookie.HTTPOnly),
+		cookie.WithSameSite(cfg.Cookie.SameSite),
+	)
 	dbStorage, err := db.New(cfg.DB.Path,
 		db.WithLogger(log),
 		db.WithWarnLogLevel(),
@@ -55,15 +66,17 @@ func New(cfg *config.Config) (App, error) {
 		cfg:            cfg,
 		log:            log,
 		templateEngine: templateEngine,
+		valid:          valid,
+		cookieBuilder:  cookieBuilder,
 		dbStorage:      dbStorage,
 	}, nil
 }
 
-func (a app) Run() error {
+func (a *app) Run() error {
 	// app init
 	fiberApp := fiber.New(fiber.Config{
-		AppName: "BookShelf App",
-		// ErrorHandler: httpDelivery.CustomErrorHandler,
+		AppName:      "BookShelf App",
+		ErrorHandler: http.CustomErrorHandler,
 		ServerHeader: "BookShelf",
 		Views:        a.templateEngine,
 	})
@@ -84,7 +97,8 @@ func (a app) Run() error {
 	userUC := usecase.NewUserUsecase(userRepoDB, a.cfg.AuthTokenSecret, a.cfg.AuthTokenTTL)
 
 	// register endpoints
-	http.RegisterUserEndpoints(fiberApp, userUC, middleware.ToSettingsIfCookie())
+	http.RegisterIndexEndpoints(fiberApp)
+	http.RegisterUserEndpoints(fiberApp, userUC, a.valid, a.cookieBuilder)
 
 	// handle shutdown process signals
 	quit := make(chan os.Signal, 1)

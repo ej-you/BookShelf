@@ -1,0 +1,36 @@
+h4 {
+	font-size: 23px;
+	margin: 10px;
+}
+
+/* logout button */
+.link-button {
+	margin: 20px 0;
+	font-size: 23px;
+	border-radius: 20px;
+	background-color: var(--light-gray);
+
+	height: 80%;
+	padding: 12px 30px;
+	align-content: center;
+}
+
+.link-button:hover {
+	background-color: var(--gray);
+}
+
+.change-passwd {
+	margin-bottom: 20px;
+}
+
+
+/* for width to 750px and less */
+@media screen and (max-width: 750px) {
+	h4 {
+		font-size: 21px;
+	}
+
+	.link-button a {
+		font-size: 20px;
+	}
+}

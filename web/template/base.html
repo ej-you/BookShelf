@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/error_message.css">
+	{% block css %}{% endblock %}
+	<script type="text/javascript" src="/static/js/base.js"></script>
+	<title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+	<div id="error-message">
+		<h2 id="error-message-title">Error</h2>
+		<p id="error-message-code">400</p>
+		<p id="error-message-text">
+			a long error message to explain to users what stupid amoeba they are
+		</p>
+	</div>
+
+	<header>
+		<nav>
+			<div class="logo-container">
+				<button class="nav-elem logo"><a href="/">
+						<img src="/favicon.ico" alt="logo">
+					</a></button>
+			</div>
+			<div class="right-nav-container">
+				<button class="nav-elem nav-menu-button-elem">
+					<a id="menu-book" href="/library">Library</a>
+				</button>
+				<button class="nav-elem nav-menu-button-elem">
+					<a id="menu-genre" href="/genre">Genre</a>
+				</button>
+				<button class="nav-elem nav-menu-button-elem">
+					<a id="menu-settings" href="/user/settings">Settings</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+	{% block content %}{% endblock %}
+</body>
+
+</html>

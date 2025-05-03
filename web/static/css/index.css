@@ -1,0 +1,47 @@
+.flex-content {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.description-p {
+	margin: 5px auto;
+}
+
+.description-p a {
+	color: var(--light-red);
+}
+
+.description-p a:hover {
+	text-decoration: underline;
+}
+
+.description {
+	width: 95%;
+}
+
+.entry-buttons {
+	margin-top: 10px;
+
+	width: 300px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.link-button {
+	flex: 1;
+	font-size: 23px;
+	border-radius: 15px;
+	background-color: var(--light-gray);
+	user-select: none;
+}
+
+.link-button:hover {
+	background-color: var(--gray);
+}
+
+.link-button a {
+	display: block;
+	padding: 10px 25px;
+}

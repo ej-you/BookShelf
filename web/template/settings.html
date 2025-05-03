@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/signup_login.css">
+<link rel="stylesheet" type="text/css" href="/static/css/settings.css">
+{% endblock %}
+
+{% block title %}Settings | BookShelf{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h4>You are authorized as <span class="accent">{{ login }}</span></h4>
+
+	<form onsubmit="addQueryParamsToForm(this)" id="link-button-form" action="/user/logout" method="post">
+		<button id="link-button" class="link-button" type="submit">Logout</button>
+	</form>
+</div>
+
+<script type="text/javascript" src="/static/js/settings.js"></script>
+{% endblock %}

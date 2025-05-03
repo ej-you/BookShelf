@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+{% endblock %}
+
+{% block title %}BookShelf{% endblock %}
+
+{% block content %}
+<h1 class="title">BookShelf</h1>
+
+<div class="content flex-content">
+	<div class="description">
+		<p class="description-p">
+			<span class="accent">BookShelf</span> is a service for organizing
+		</p>
+		<p class="description-p">
+			personal book collections.
+		</p>
+	</div>
+	<div class="entry-buttons">
+		<button class="link-button"><a href="/user/sign-up">Sign up</a></button>
+		<button class="link-button"><a href="/user/login">Login</a></button>
+	</div>
+</div>
+{% endblock %}

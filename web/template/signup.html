@@ -1,14 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
-</head>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/signup_login.css">
+{% endblock %}
 
-<body>
-    <h1>SignUp</h1>
-</body>
+{% block title %}Sign up | BookShelf{% endblock %}
 
-</html>
+{% block content %}
+<h1 class="title">BookShelf</h1>
+
+<div class="content">
+	<form onsubmit="addQueryParamsToForm(this)" action="/user/sign-up" method="post">
+		<div class="form-elem form-input-container">
+			<div class="form-elem form-input">
+				<label for="login">Login</label>
+				<input class="form-elem" type="login" id="login" name="login" placeholder="username" required>
+			</div>
+			<div class="form-elem form-input">
+				<label for="password">Password</label>
+				<input class="form-elem" type="password" id="password" name="password" required>
+			</div>
+			<div class="form-elem form-input">
+				<label for="password-confirm">Confirm password</label>
+				<input class="form-elem" type="password" id="password-confirm" name="password-confirm" required>
+			</div>
+		</div>
+		<button class="form-elem submit-btn" type="submit">Sign up</button>
+
+		<div class="form-elem to-login">
+			<p>Already have an account?</p>
+			<a href="/user/login">Login</a>
+		</div>
+	</form>
+</div>
+{% endblock %}

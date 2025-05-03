@@ -1,0 +1,60 @@
+#error-message {
+	display: none;
+	position: absolute;
+	margin: 20px auto;
+	padding: 20px;
+
+	left: calc(50% - 200px);
+	width: 400px;
+	height: 200px;
+
+	background-color: var(--light-gray);
+	border-radius: 20px;
+	border: solid 3px var(--light-red);
+	box-shadow: 0px 0px 25px 5px var(--light-black);
+}
+
+#error-message-title {
+	color: var(--light-red);
+	text-align: center;
+	margin-top: 1px;
+	margin-bottom: 10px;
+
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#error-message-code {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#error-message-text {
+	text-align: center;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* for width to 750px and less */
+@media screen and (max-width: 750px) {
+	#error-message {
+		margin: 10px auto;
+
+		left: calc(50% - 150px);
+		width: 300px;
+		height: 180px;
+	}
+
+	#error-message-title {
+		margin-top: 0;
+		margin-bottom: 7px;
+	}
+
+	#error-message-code {
+		text-align: center;
+		margin-bottom: 14px;
+	}
+}

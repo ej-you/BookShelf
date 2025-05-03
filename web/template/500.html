@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block title %}500 InternalError | Filmer{% endblock %}
+
+{% block content %}
+<h1 class="title">Error</h1>
+
+<div class="content">
+	<div class="page-error-container">
+		<h3 class="accent">Unknown error</h3>
+		<p>{{ message }}</p>
+	</div>
+</div>
+{% endblock %}
