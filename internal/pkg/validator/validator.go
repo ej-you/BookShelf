@@ -54,20 +54,12 @@ func (v validator) Validate(s any) error {
 	}
 	// handle error messages
 	rawTranstaledMap := validateErrors.Translate(v.translator)
-	// for concat string
-	transtaledStringSlice := make([]string, 0, len(rawTranstaledMap))
-
-	// TODO: сделать адекватный формат ошибки (lowercase, мб json)
 
 	// sort out errors and concat them into string
-	var tempSlice []string
-	var key string
-	for k, v := range rawTranstaledMap {
-		tempSlice = strings.Split(k, ".")
-		key = tempSlice[len(tempSlice)-1]
-
-		transtaledStringSlice = append(transtaledStringSlice, key+": "+v)
+	transtaledStringSlice := make([]string, 0, len(rawTranstaledMap))
+	for _, v := range rawTranstaledMap {
+		transtaledStringSlice = append(transtaledStringSlice, strings.ToLower(v))
 	}
 
-	return errors.New(strings.Join(transtaledStringSlice, " - "))
+	return errors.New(strings.Join(transtaledStringSlice, " && "))
 }
