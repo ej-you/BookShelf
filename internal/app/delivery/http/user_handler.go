@@ -46,7 +46,9 @@ func (u userHandler) loginHTML(ctx *fiber.Ctx) error {
 
 // Render settings HTML.
 func (u userHandler) settingsHTML(ctx *fiber.Ctx) error {
-	return ctx.Render("settings", fiber.Map{})
+	return ctx.Render("settings", fiber.Map{
+		"login": ctx.Locals(constants.LocalsKeyLogin),
+	})
 }
 
 // Sign up new user.
@@ -72,7 +74,7 @@ func (u userHandler) signUp(ctx *fiber.Ctx) error {
 	// sign up new user
 	userWithToken, err := u.userUC.SignUp(user)
 	if err != nil {
-		return fmt.Errorf("login: %w", err)
+		return fmt.Errorf("sign up: %w", err)
 	}
 	// set auth and login cookies
 	ctx.Cookie(u.cookieBuilder.CreateCookie(constants.CookieAuth, userWithToken.AuthToken))
