@@ -8,3 +8,5 @@ type Genre struct {
 func (Genre) TableName() string {
 	return "genre"
 }
+
+type GenreList []Genre

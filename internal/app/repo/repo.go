@@ -12,8 +12,12 @@ type UserRepoDB interface {
 	GetByLogin(user *entity.User) error
 }
 
-// type GenreRepoDB interface {
-// }
+type GenreRepoDB interface {
+	Create(genre *entity.Genre) error
+	Remove(genre *entity.Genre) error
+	GetAll() (*entity.GenreList, error)
+	// GetAll(genres *entity.GenreList) error
+}
 
 // type BookRepoDB interface {
 // }

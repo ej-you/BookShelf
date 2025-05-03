@@ -1,5 +1,5 @@
-// Package repodb contains implementations for repo interfaces
-// that use a DB as a data source.
+// Package sqlite contains implementations for repo interfaces
+// that use a SQLite DB as a data source.
 package sqlite
 
 import (
