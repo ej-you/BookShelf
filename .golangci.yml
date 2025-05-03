@@ -78,6 +78,10 @@ linters:
           - gocritic
         path: internal/app/delivery/http/register\.go
         text: "unnecessaryBlock: block doesn't have definitions, can be simply deleted" # more readable
+      - linters:
+          - mnd
+        path: internal/pkg/cookie/cookie\.go
+        text: "Magic number: 24, in <operation> detected" # too obviously
     paths:
       - build
       - db

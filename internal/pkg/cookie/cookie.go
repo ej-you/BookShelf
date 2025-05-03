@@ -1,4 +1,4 @@
-// Package cookie provides builder interface to create cookies.
+// Package cookie provides builder interface to create and clear cookies.
 package cookie
 
 import (
@@ -97,7 +97,7 @@ func (b builder) ClearCookie(key string) *fiber.Cookie {
 	return emptyCookie
 }
 
-// Create and return new empty cookie with builder parameters.
+// Create and return empty cookie with builder parameters.
 func (b builder) emptyCookie() *fiber.Cookie {
 	return &fiber.Cookie{
 		Name:     "",
