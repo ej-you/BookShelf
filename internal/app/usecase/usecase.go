@@ -10,3 +10,9 @@ type UserUsecase interface {
 	SignUp(user *entity.User) (*entity.UserWithToken, error)
 	Login(user *entity.User) (*entity.UserWithToken, error)
 }
+
+type GenreUsecase interface {
+	Create(genre *entity.Genre) error
+	Remove(genre *entity.Genre) error
+	GetAll() (*entity.GenreList, error)
+}
