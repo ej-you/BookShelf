@@ -28,23 +28,21 @@ func (u *genreRepoDB) Create(genre *entity.Genre) error {
 	err := u.dbStorage.Create(genre).Error
 
 	if goerrors.Is(err, gorm.ErrDuplicatedKey) {
-		err = errors.ErrAlreadyExists
+		return errors.ErrAlreadyExists
 	}
-	return goerrors.Wrap(err, "create genre")
+	return err // err or nil
 }
 
 // Delete genre by its ID.
 // ID field must be presented.
 func (u *genreRepoDB) Remove(genre *entity.Genre) error {
-	err := u.dbStorage.Delete(&entity.Genre{}, genre.ID).Error
-	return goerrors.Wrap(err, "remove genre")
+	return u.dbStorage.Delete(&entity.Genre{}, genre.ID).Error
 }
 
 // Get all genres.
-// Fill given struct pointer value.
+// Return slice of Genre structs.
 func (u *genreRepoDB) GetAll() (*entity.GenreList, error) {
 	genres := &entity.GenreList{}
 	err := u.dbStorage.Find(genres).Error
-
-	return genres, goerrors.Wrap(err, "get all genres")
+	return genres, err
 }

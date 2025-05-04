@@ -35,24 +35,21 @@ func (u *bookRepoDB) Create(book *entity.Book) error {
 	err := u.dbStorage.Create(book).Error
 
 	if goerrors.Is(err, gorm.ErrDuplicatedKey) {
-		err = errors.ErrAlreadyExists
+		return errors.ErrAlreadyExists
 	}
-	return goerrors.Wrap(err, "create book")
+	return err // err or nil
 }
 
 // Delete book by its ID.
 // ID field must be presented.
 func (u *bookRepoDB) Remove(book *entity.Book) error {
-	err := u.dbStorage.Delete(&entity.Book{}, book.ID).Error
-	return goerrors.Wrap(err, "remove book")
+	return u.dbStorage.Delete(&entity.Book{}, book.ID).Error
 }
 
 // Update all book fields with given data by giving book ID.
 // ID, UserID and Title fields must be presented.
 func (u *bookRepoDB) Update(book *entity.Book) error {
-	err := u.dbStorage.Save(book).Error
-
-	return goerrors.Wrap(err, "update book")
+	return u.dbStorage.Save(book).Error
 }
 
 // Get book by given ID with genre preloading.
@@ -62,9 +59,9 @@ func (u *bookRepoDB) GetByID(book *entity.Book) error {
 	err := u.dbStorage.Preload("Genre").First(book, book.ID).Error
 
 	if goerrors.Is(err, gorm.ErrRecordNotFound) {
-		err = errors.ErrNotFound
+		return errors.ErrNotFound
 	}
-	return goerrors.Wrap(err, "get book by id")
+	return err // err or nil
 }
 
 // Get books by given sort and filters with genre preloading.
@@ -80,8 +77,7 @@ func (u *bookRepoDB) GetList(bookList *entity.BookList) error {
 	selectQuery = u.addSort(selectQuery, bookList)
 	selectQuery = u.addFilter(selectQuery, bookList)
 	// do select query
-	err := selectQuery.Preload("Genre").Find(&bookList.Books).Error
-	return goerrors.Wrap(err, "get book list")
+	return selectQuery.Preload("Genre").Find(&bookList.Books).Error
 }
 
 func (u *bookRepoDB) addSort(selectQuery *gorm.DB, bookList *entity.BookList) *gorm.DB {

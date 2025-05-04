@@ -8,11 +8,11 @@ import (
 )
 
 var (
-	ErrValidateData    = goerrors.New("validate data")               // 400
-	ErrInvalidPassword = goerrors.New("invalid password")            // 401
-	ErrConfirmPassword = goerrors.New("confirm password is invalid") // 401
-	ErrNotFound        = goerrors.New("record not found")            // 404
-	ErrAlreadyExists   = goerrors.New("record already exists")       // 409
+	ErrValidateData    = goerrors.New("validate data")               // HTTP code 400
+	ErrInvalidPassword = goerrors.New("invalid password")            // HTTP code 401
+	ErrConfirmPassword = goerrors.New("confirm password is invalid") // HTTP code 401
+	ErrNotFound        = goerrors.New("record not found")            // HTTP code 404
+	ErrAlreadyExists   = goerrors.New("record already exists")       // HTTP code 409
 )
 
 // Returns HTTP code for given error if given error is one of the error declared above.

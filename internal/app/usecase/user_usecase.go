@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"fmt"
 	"time"
 
 	"BookShelf/internal/app/entity"
@@ -44,7 +45,7 @@ func (u *userUsecase) SignUp(user *entity.User) (*entity.UserWithToken, error) {
 
 	// create user
 	if err := u.userRepoDB.Create(user); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("create user: %w", err)
 	}
 	// generate auth token
 	authToken, err := auth.NewToken(u.tokenSigningKey, u.tokenTTL, user.ID)
@@ -67,7 +68,7 @@ func (u *userUsecase) Login(user *entity.User) (*entity.UserWithToken, error) {
 
 	// get user from DB with email
 	if err := u.userRepoDB.GetByLogin(user); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get user by login: %w", err)
 	}
 
 	// check entered password is correct
