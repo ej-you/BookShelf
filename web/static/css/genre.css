@@ -21,6 +21,7 @@ h3 {
 }
 
 .add-form {
+	margin-bottom: 11px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

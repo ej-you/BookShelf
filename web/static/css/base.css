@@ -41,11 +41,14 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+
+	margin: 15px;
 }
 
 .nav-elem {
-	font-size: 25px;
-	margin: 10px 15px;
+	font-size: 23px;
+	/* margin-left: 15px;
+	margin-right: 15px; */
 }
 
 .nav-elem>* {
@@ -60,6 +63,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	gap: 5px;
 }
 
 /* logo image in nav panel */
@@ -72,18 +76,14 @@ nav {
 }
 
 .logo img {
-	width: 48px;
-}
-
-/* text button element of nav panel */
-.nav-menu-button-elem {
-	margin: 10px 0;
+	width: 42px;
+	height: 42px;
 }
 
 .nav-menu-button-elem a {
-	border-radius: 20px;
+	border-radius: 10px;
 
-	padding: 0 30px;
+	padding: 0 17px;
 	align-content: center;
 
 	display: flex;

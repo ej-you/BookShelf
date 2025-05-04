@@ -31,7 +31,7 @@ input {
 
 	font-size: 20px;
 	border: solid 3px var(--light-gray);
-	border-radius: 15px;
+	border-radius: 10px;
 }
 
 label {
@@ -44,7 +44,7 @@ label {
 	padding: 10px 25px;
 
 	font-size: 23px;
-	border-radius: 15px;
+	border-radius: 10px;
 	background-color: var(--light-gray);
 	user-select: none;
 }
@@ -73,15 +73,4 @@ label {
 .to-signup a:hover,
 .to-login a:hover {
 	text-decoration: underline;
-}
-
-/* for width to 750px and less */
-@media screen and (max-width: 750px) {
-	form {
-		width: 85%;
-	}
-
-	.link-button a {
-		font-size: 20px;
-	}
 }
