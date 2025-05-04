@@ -3,11 +3,13 @@ package http
 import (
 	goerrors "errors"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 
 	fiber "github.com/gofiber/fiber/v2"
 
+	"BookShelf/internal/app/constants"
 	"BookShelf/internal/app/errors"
 )
 
@@ -26,13 +28,23 @@ func CustomErrorHandler(ctx *fiber.Ctx, err error) error {
 	}
 
 	// show popup error message
-	// url and query params before error occurs
-	url := ctx.OriginalURL()
-	queryParams := ctx.Queries()
-	// add query params for redirect bask with error message
-	queryParams["statusCode"] = strconv.Itoa(errorStatusCode)
-	queryParams["message"] = err.Error()
+	// query params before error occurs
+	urlQuery := url.Values{}
+	for k, v := range ctx.Queries() {
+		urlQuery.Add(k, v)
+	}
+	urlQuery.Set("statusCode", strconv.Itoa(errorStatusCode))
+	urlQuery.Set("message", err.Error())
 
-	// redirect back with error message query-params
-	return ctx.RedirectToRoute(url, fiber.Map{"queries": queryParams}, http.StatusSeeOther)
+	// parse last GET-request URL
+	redirectURL := ctx.Path()
+	// set "/genre" path for all "/genre" subroutes
+	if strings.HasPrefix(redirectURL, constants.GenrePath) {
+		redirectURL = constants.GenrePath
+	}
+	// add query params to URL
+	redirectURL = redirectURL + "?" + urlQuery.Encode()
+
+	// redirect back (last GET-request URL) with error message query-params
+	return ctx.Redirect(redirectURL, http.StatusSeeOther)
 }

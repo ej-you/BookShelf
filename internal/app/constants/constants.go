@@ -12,4 +12,5 @@ const (
 	LoginPath    = "/user/login"
 	SettingsPath = "/user/settings"
 	LibraryPath  = "/library"
+	GenrePath    = "/genre"
 )

@@ -38,3 +38,17 @@ func RegisterUserEndpoints(
 		userGroup.Post("/logout", userHandler.logout)
 	}
 }
+
+func RegisterGenreEndpoints(
+	router fiber.Router,
+	genreUC usecase.GenreUsecase,
+	valid validator.Validator) {
+
+	genreHandler := newGenreHandler(genreUC, valid)
+	genreGroup := router.Group("/genre", middleware.ToLoginIfNoCookie())
+	{
+		genreGroup.Get("/", genreHandler.listHTML)
+		genreGroup.Post("/create", genreHandler.create)
+		genreGroup.Post("/remove/:genreID", genreHandler.remove)
+	}
+}

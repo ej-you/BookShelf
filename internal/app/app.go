@@ -92,13 +92,16 @@ func (a *app) Run() error {
 
 	// create repo
 	userRepoDB := sqlite.NewUserRepoDB(a.dbStorage)
+	genreRepoDB := sqlite.NewGenreRepoDB(a.dbStorage)
 
 	// create usecases
 	userUC := usecase.NewUserUsecase(userRepoDB, a.cfg.AuthTokenSecret, a.cfg.AuthTokenTTL)
+	genreUC := usecase.NewGenreUsecase(genreRepoDB)
 
 	// register endpoints
 	http.RegisterIndexEndpoints(fiberApp)
 	http.RegisterUserEndpoints(fiberApp, userUC, a.valid, a.cookieBuilder)
+	http.RegisterGenreEndpoints(fiberApp, genreUC, a.valid)
 
 	// handle shutdown process signals
 	quit := make(chan os.Signal, 1)

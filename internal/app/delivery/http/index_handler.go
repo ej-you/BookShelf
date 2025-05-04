@@ -12,6 +12,6 @@ func newIndexHandler() *indexHandler {
 }
 
 // Render index HTML.
-func (i indexHandler) indexHTML(ctx *fiber.Ctx) error {
+func (i *indexHandler) indexHTML(ctx *fiber.Ctx) error {
 	return ctx.Render("index", fiber.Map{})
 }

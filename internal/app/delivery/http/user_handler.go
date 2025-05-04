@@ -35,24 +35,24 @@ func newUserHandler(
 }
 
 // Render sign up HTML.
-func (u userHandler) signUpHTML(ctx *fiber.Ctx) error {
+func (u *userHandler) signUpHTML(ctx *fiber.Ctx) error {
 	return ctx.Render("signup", fiber.Map{})
 }
 
 // Render login HTML.
-func (u userHandler) loginHTML(ctx *fiber.Ctx) error {
+func (u *userHandler) loginHTML(ctx *fiber.Ctx) error {
 	return ctx.Render("login", fiber.Map{})
 }
 
 // Render settings HTML.
-func (u userHandler) settingsHTML(ctx *fiber.Ctx) error {
+func (u *userHandler) settingsHTML(ctx *fiber.Ctx) error {
 	return ctx.Render("settings", fiber.Map{
 		"login": ctx.Locals(constants.LocalsKeyLogin),
 	})
 }
 
 // Sign up new user.
-func (u userHandler) signUp(ctx *fiber.Ctx) error {
+func (u *userHandler) signUp(ctx *fiber.Ctx) error {
 	authInput := &AuthInput{}
 	user := &entity.User{}
 
@@ -84,7 +84,7 @@ func (u userHandler) signUp(ctx *fiber.Ctx) error {
 }
 
 // Login existing user.
-func (u userHandler) login(ctx *fiber.Ctx) error {
+func (u *userHandler) login(ctx *fiber.Ctx) error {
 	authInput := &AuthInput{}
 	user := &entity.User{}
 
@@ -116,7 +116,7 @@ func (u userHandler) login(ctx *fiber.Ctx) error {
 	return ctx.Redirect(redirectURL, http.StatusSeeOther)
 }
 
-func (u userHandler) logout(ctx *fiber.Ctx) error {
+func (u *userHandler) logout(ctx *fiber.Ctx) error {
 	// clear auth and login cookies
 	ctx.Cookie(u.cookieBuilder.ClearCookie(constants.CookieAuth))
 	ctx.Cookie(u.cookieBuilder.ClearCookie(constants.CookieLogin))

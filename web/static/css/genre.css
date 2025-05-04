@@ -1,0 +1,82 @@
+h3 {
+	font-size: 30px;
+	user-select: none;
+}
+
+.flex-content {
+	margin: auto 15px 150px 15px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.flex-content>* {
+	margin-bottom: 15px;
+}
+
+.add-form,
+.genre-list {
+	width: 50%;
+}
+
+.add-form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.add-form>*,
+.genre-list,
+.genre-card {
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: var(--light-gray);
+}
+
+.add-form input {
+	flex-grow: 1;
+	padding: 10px 20px;
+	margin-right: 10px;
+}
+
+/* submit button in form */
+.add-form button {
+	padding: 10px 40px;
+	user-select: none;
+}
+
+.add-form button:hover {
+	background-color: var(--gray);
+}
+
+.genre-list {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	padding: 20px;
+	gap: 10px;
+}
+
+.genre-card {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+
+	padding: 7px 10px 7px 15px;
+	box-shadow: 0px 0px 10px 0.1px var(--light-black);
+}
+
+.genre-name {
+	display: flex;
+}
+
+.genre-delete {
+	display: flex;
+}
+
+.genre-delete svg {
+	width: 24px;
+	height: 24px;
+	fill: var(--white);
+}
