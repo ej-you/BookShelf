@@ -1,0 +1,87 @@
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	width: 40%;
+}
+
+/* to set full-width for form elem */
+.form-elem {
+	width: 100%;
+}
+
+/* all inputs in form */
+.form-input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* every input in form */
+.form-input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+input {
+	margin: 5px 0;
+	padding: 8px 15px;
+
+	font-size: 20px;
+	border: solid 3px var(--light-gray);
+	border-radius: 15px;
+}
+
+label {
+	margin: 10px 10px 5px 10px;
+}
+
+/* submit button in form */
+.submit-btn {
+	margin: 40px 0 20px 0;
+	padding: 10px 25px;
+
+	font-size: 23px;
+	border-radius: 15px;
+	background-color: var(--light-gray);
+	user-select: none;
+}
+
+.submit-btn:hover {
+	background-color: var(--gray);
+}
+
+/* line with link to login/signup page under form */
+.to-signup,
+.to-login {
+	display: flex;
+	justify-content: center;
+}
+
+.to-signup *,
+.to-login * {
+	margin: auto 5px;
+}
+
+.to-signup a,
+.to-login a {
+	color: var(--light-red);
+}
+
+.to-signup a:hover,
+.to-login a:hover {
+	text-decoration: underline;
+}
+
+/* for width to 750px and less */
+@media screen and (max-width: 750px) {
+	form {
+		width: 85%;
+	}
+
+	.link-button a {
+		font-size: 20px;
+	}
+}
