@@ -52,7 +52,7 @@ func New(cfg *config.Config) (App, error) {
 		cookie.WithHTTPOnly(cfg.Cookie.HTTPOnly),
 		cookie.WithSameSite(cfg.Cookie.SameSite),
 	)
-	dbStorage, err := db.New(cfg.DB.Path,
+	dbStorage, err := db.New(cfg.DB.DSN,
 		db.WithLogger(log),
 		db.WithWarnLogLevel(),
 		db.WithIgnoreNotFound(),

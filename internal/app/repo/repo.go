@@ -16,8 +16,12 @@ type GenreRepoDB interface {
 	Create(genre *entity.Genre) error
 	Remove(genre *entity.Genre) error
 	GetAll() (*entity.GenreList, error)
-	// GetAll(genres *entity.GenreList) error
 }
 
-// type BookRepoDB interface {
-// }
+type BookRepoDB interface {
+	Create(book *entity.Book) error
+	Remove(book *entity.Book) error
+	Update(book *entity.Book) error
+	GetByID(book *entity.Book) error
+	GetList(bookList *entity.BookList) error
+}

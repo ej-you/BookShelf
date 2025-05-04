@@ -32,6 +32,7 @@ type (
 
 	DB struct {
 		Path string `env-required:"true" env:"DB_PATH"`
+		DSN  string
 	}
 )
 
@@ -42,5 +43,7 @@ func New() (*Config, error) {
 	if err := cleanenv.ReadEnv(cfg); err != nil {
 		return nil, fmt.Errorf("create config: %w", err)
 	}
+	// create DSN for DB
+	cfg.DB.DSN = fmt.Sprintf("file:%s?_foreign_keys=on", cfg.DB.Path)
 	return cfg, nil
 }

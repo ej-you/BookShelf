@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	_dbPath = "../../../../db/sqlite3.db"
+	_dbDSN = "file:../../../../db/sqlite3.db?_foreign_keys=on"
 )
 
 var (
@@ -25,8 +25,7 @@ func TestMain(m *testing.M) {
 	var err error
 
 	// open DB connection
-	_dbStorage, err = db.New(
-		_dbPath,
+	_dbStorage, err = db.New(_dbDSN,
 		db.WithTranslateError(),
 		db.WithIgnoreNotFound(),
 		db.WithDisableColorful(),
