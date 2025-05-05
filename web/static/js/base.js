@@ -77,3 +77,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	localStorage.setItem("book-back-url", currentPath + currentQuery);
 });
+
+// +----------------------+
+// + Apply theme and font +
+// +----------------------+
+
+// apply font for app
+function applyFont(font) {
+	document.body.style.fontFamily = `var(--font-${font})`
+}
+
+// returns current font name
+function getFont() {
+	let font = localStorage.getItem("font");
+
+	if (font == null) {
+		font = "Sans-Serif"
+	}
+
+	return font
+}
+
+// returns current theme name
+function getTheme() {
+	let theme = localStorage.getItem("theme");
+
+	if (theme == null) {
+		theme = "Dark"
+	}
+
+	return theme
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+	let theme = getTheme();
+	let font = getFont();
+
+
+	applyFont(font)
+});

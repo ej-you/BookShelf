@@ -41,6 +41,10 @@
 	width: 350px;
 }
 
+.sort-header {
+	margin-bottom: 10px;
+}
+
 .manage-btn {
 	display: flex;
 	flex-direction: column;

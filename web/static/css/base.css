@@ -6,19 +6,18 @@
 	--dark-gray: #1b1b1b;
 	--light-black: #111111;
 
-	--green: #82b423;
 	--light-red: #ab785b;
 
-	--font-monospace: monospace;
-	--font-arial: Arial;
-	--font-sans-serif: sans-serif;
-	--font-times: 'Times New Roman';
+	--font-Monospace: monospace;
+	--font-Arial: Arial;
+	--font-Sans-Serif: sans-serif;
+	--font-Times: 'Times New Roman';
 }
 
 body {
 	background-color: var(--dark-gray);
 	color: var(--white);
-	font-family: var(--font-arial);
+	font-family: var(--font-Sans-Serif);
 }
 
 h1 {

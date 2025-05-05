@@ -3,6 +3,7 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="/static/css/signup_login.css">
 <link rel="stylesheet" type="text/css" href="/static/css/settings.css">
+<script type="text/javascript" src="/static/js/settings.js"></script>
 {% endblock %}
 
 {% block title %}Settings | BookShelf{% endblock %}
@@ -11,12 +12,28 @@
 <h1 class="title">Settings</h1>
 
 <div class="content">
-	<h4>You are authorized as <span class="accent">{{ login }}</span></h4>
+	<div class="custom-setting">
+		<h4>Theme</h4>
+		<div class="setting-buttons">
+			<button onclick="themeChange(this)" class="theme-setting default" id="theme-dark">Dark</button>
+			<button onclick="themeChange(this)" class="theme-setting default" id="theme-light">Light</button>
+		</div>
+	</div>
+	<div class="custom-setting">
+		<h4>Font</h4>
+		<div class="setting-buttons">
+			<button onclick="fontChange(this)" class="font-setting default" id="font-sans-serif">Sans-Serif</button>
+			<button onclick="fontChange(this)" class="font-setting default" id="font-arial">Arial</button>
+			<button onclick="fontChange(this)" class="font-setting default" id="font-monospace">Monospace</button>
+			<button onclick="fontChange(this)" class="font-setting default" id="font-times-new-roman">Times</button>
+		</div>
+	</div>
+
+
+	<h4 class="logged-in">You are authorized as <span class="accent">{{ login }}</span></h4>
 
 	<form onsubmit="addQueryParamsToForm(this)" id="link-button-form" action="/user/logout" method="post">
 		<button id="link-button" class="link-button" type="submit">Logout</button>
 	</form>
 </div>
-
-<script type="text/javascript" src="/static/js/settings.js"></script>
 {% endblock %}
