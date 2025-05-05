@@ -24,8 +24,8 @@ type userHandler struct {
 
 func newUserHandler(
 	userUC usecase.UserUsecase,
-	valid validator.Validator,
-	cookieBuilder cookie.Builder) *userHandler {
+	cookieBuilder cookie.Builder,
+	valid validator.Validator) *userHandler {
 
 	return &userHandler{
 		userUC:        userUC,

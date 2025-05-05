@@ -18,6 +18,8 @@ func (Book) TableName() string {
 	return "book"
 }
 
+type Books []Book
+
 type BookList struct {
 	UserID         string
 	SortField      *string  `query:"sortField" validate:"omitempty,oneof=title year author"`
@@ -26,5 +28,5 @@ type BookList struct {
 	FilterGenres   []string `query:"genres" validate:"omitempty"`
 	FilterYearFrom *int     `query:"yearFrom" validate:"omitempty,min=0,max=2100"`
 	FilterYearTo   *int     `query:"yearTo" validate:"omitempty,min=0,max=2100"`
-	Books          []Book
+	Books          Books
 }

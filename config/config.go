@@ -21,6 +21,7 @@ type (
 		AuthTokenSecret  []byte        `env-required:"true" env:"AUTH_TOKEN_SECRET"`
 		AuthTokenTTL     time.Duration `env:"AUTH_TOKEN_TTL" env-default:"30m"`
 		KeepAliveTimeout time.Duration `env:"KEEP_ALIVE_TIMEOUT" env-default:"60s"`
+		MediaPath        string        `env-required:"true" env:"MEDIA_PATH"`
 	}
 
 	Cookie struct {

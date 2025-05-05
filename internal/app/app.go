@@ -102,9 +102,12 @@ func (a *app) Run() error {
 
 	// register endpoints
 	http.RegisterIndexEndpoints(fiberApp)
-	http.RegisterUserEndpoints(fiberApp, userUC, a.valid, a.cookieBuilder)
+	http.RegisterUserEndpoints(fiberApp, userUC, a.cookieBuilder, a.valid)
 	http.RegisterGenreEndpoints(fiberApp, genreUC, a.valid)
-	http.RegisterBookEndpoints(fiberApp, bookUC, genreUC, a.cfg.AuthTokenSecret, a.valid)
+	http.RegisterBookEndpoints(fiberApp,
+		bookUC, genreUC,
+		a.cfg.AuthTokenSecret, a.cfg.App.MediaPath,
+		a.valid)
 
 	// handle shutdown process signals
 	quit := make(chan os.Signal, 1)

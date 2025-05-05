@@ -41,6 +41,18 @@
 	width: 350px;
 }
 
+.manage-btn {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	gap: 5px;
+
+	background-color: var(--dark-gray);
+	box-shadow: 0px 0px 25px 1px var(--light-black);
+	border-radius: 10px;
+	width: 350px;
+}
+
 .manage-btn:hover {
 	background-color: var(--gray);
 }

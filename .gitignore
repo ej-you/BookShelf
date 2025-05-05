@@ -7,3 +7,6 @@
 # Local
 /.vscode
 notes.txt
+
+# media files
+/media/excel/*.xlsx

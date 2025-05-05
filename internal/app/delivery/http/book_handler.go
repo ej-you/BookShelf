@@ -3,6 +3,7 @@ package http
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	fiber "github.com/gofiber/fiber/v2"
 
@@ -11,6 +12,7 @@ import (
 	"BookShelf/internal/app/errors"
 	"BookShelf/internal/app/usecase"
 	"BookShelf/internal/pkg/auth"
+	"BookShelf/internal/pkg/excel"
 	"BookShelf/internal/pkg/validator"
 )
 
@@ -19,6 +21,7 @@ type bookHandler struct {
 	bookUC          usecase.BookUsecase
 	genreUC         usecase.GenreUsecase
 	tokenSigningKey []byte
+	mediaPath       string
 	valid           validator.Validator
 }
 
@@ -26,12 +29,14 @@ func newBookHandler(
 	bookUC usecase.BookUsecase,
 	genreUC usecase.GenreUsecase,
 	tokenSigningKey []byte,
+	mediaPath string,
 	valid validator.Validator) *bookHandler {
 
 	return &bookHandler{
 		bookUC:          bookUC,
 		genreUC:         genreUC,
 		tokenSigningKey: tokenSigningKey,
+		mediaPath:       mediaPath,
 		valid:           valid,
 	}
 }
@@ -251,6 +256,44 @@ func (b *bookHandler) remove(ctx *fiber.Ctx) error {
 	}
 	// redirect to library page
 	return ctx.Redirect(constants.LibraryPath, http.StatusSeeOther)
+}
+
+func (b *bookHandler) exportExcel(ctx *fiber.Ctx) error {
+	bookList := &entity.BookList{}
+
+	// parse query params
+	if err := ctx.QueryParser(bookList); err != nil {
+		return err
+	}
+	// validate parsed data
+	if err := b.valid.Validate(bookList); err != nil {
+		return fmt.Errorf("%w: %s", errors.ErrValidateData, err.Error())
+	}
+
+	// parse user ID from auth token
+	authToken, ok := ctx.Locals(constants.LocalsKeyAuthToken).(string)
+	if !ok {
+		return errors.ErrParseAuthToken
+	}
+	userID, err := auth.ParseUserIDFromToken(b.tokenSigningKey, authToken)
+	if err != nil {
+		return err
+	}
+
+	bookList.UserID = userID
+	// get book list according to sort and filter settings
+	if err := b.bookUC.GetList(bookList); err != nil {
+		return err
+	}
+
+	// generate filename
+	filepath := b.mediaPath + fmt.Sprintf("/excel/%s_%d.xlsx", userID, time.Now().UTC().UnixMilli())
+	fmt.Println("filepath:", filepath)
+	// generate excel file
+	if err := excel.ExportBook(filepath, bookList.Books); err != nil {
+		return fmt.Errorf("export books to excel: %w", err)
+	}
+	return ctx.Download(filepath, "exported_books.xlsx")
 }
 
 // Copy all field values from BookInput to Book.

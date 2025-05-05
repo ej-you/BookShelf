@@ -20,10 +20,10 @@ func RegisterIndexEndpoints(router fiber.Router) {
 func RegisterUserEndpoints(
 	router fiber.Router,
 	userUC usecase.UserUsecase,
-	valid validator.Validator,
-	cookieBuilder cookie.Builder) {
+	cookieBuilder cookie.Builder,
+	valid validator.Validator) {
 
-	userHandler := newUserHandler(userUC, valid, cookieBuilder)
+	userHandler := newUserHandler(userUC, cookieBuilder, valid)
 	userGroup := router.Group("/user")
 	{
 		userGroup.Get("/sign-up", middleware.ToSettingsIfCookie(), userHandler.signUpHTML)
@@ -58,9 +58,10 @@ func RegisterBookEndpoints(
 	bookUC usecase.BookUsecase,
 	genreUC usecase.GenreUsecase,
 	tokenSigningKey []byte,
+	mediaPath string,
 	valid validator.Validator) {
 
-	bookHandler := newBookHandler(bookUC, genreUC, tokenSigningKey, valid)
+	bookHandler := newBookHandler(bookUC, genreUC, tokenSigningKey, mediaPath, valid)
 	router.Get("/library",
 		middleware.CookieParser(), middleware.ToLoginIfNoCookie(),
 		bookHandler.listHTML)
@@ -72,7 +73,7 @@ func RegisterBookEndpoints(
 		bookGroup.Get("/edit/:genreID", bookHandler.editHTML)
 		bookGroup.Post("/edit/:genreID", bookHandler.edit)
 
-		// bookGroup.Post("/export", bookHandler.export)
+		bookGroup.Post("/export/excel", bookHandler.exportExcel)
 
 		bookGroup.Post("/remove/:genreID", bookHandler.remove)
 	}
