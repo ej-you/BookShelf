@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/book.css">
+{% endblock %}
+
+{% block title %}Create book | BookShelf{% endblock %}
+
+{% block content %}
+<div class="title book-title">
+    <div class="back-button-container">
+        <div class="back-button-subcontainer">
+            <a id="back-button" href="/">
+                <svg version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <path
+                        d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <h1>Create book record</h1>
+</div>
+
+<div class="content">
+    <form onsubmit="addQueryParamsToForm(this)" action="/book/create" method="post">
+        <div class="form-elem form-input-container">
+            <div class="form-elem form-input">
+                <label for="title">Title</label>
+                <input class="form-elem" type="text" id="title" name="title" required>
+            </div>
+            <div class="form-elem form-input">
+                <label for="author">Author</label>
+                <input class="form-elem" type="text" id="author" name="author">
+            </div>
+            <div class="form-elem form-input">
+                <label for="year">Release year</label>
+                <input class="form-elem" type="number" id="year" name="year" min="0" max="2100">
+            </div>
+            <div class="form-elem form-input">
+                <label for="genre">Genre</label>
+                <select class="form-elem" id="genre" name="genre">
+                    <option value="">-</option>
+                    {% for genre in genreList %}
+                    <option value="{{ genre.ID }}">{{ genre.Name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-elem form-input">
+                <label for="description">Description</label>
+                <textarea class="form-elem" id="description" name="description" rows="4" cols="50"
+                    placeholder="Enter description..."></textarea>
+            </div>
+
+            <div class="form-elem form-input type-container">
+                <div class="radio-toggle">
+                    <input type="radio" id="want" name="type" value="want" checked>
+                    <label for="want">Want</label>
+
+                    <input type="radio" id="read" name="type" value="read">
+                    <label for="read">Read</label>
+                </div>
+            </div>
+        </div>
+        <button class="form-elem create-btn" type="submit">Create</button>
+    </form>
+</div>
+<script type="text/javascript" src="/static/js/book.js"></script>
+{% endblock %}

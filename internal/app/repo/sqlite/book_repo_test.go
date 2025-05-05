@@ -13,7 +13,7 @@ import (
 var (
 	_userID        = "1"
 	_genreID       = "1"
-	_createdBookID = "1"
+	_createdBookID = "12"
 
 	_sortField      = "author"
 	_sortOrder      = "desc"

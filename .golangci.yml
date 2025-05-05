@@ -82,6 +82,10 @@ linters:
           - mnd
         path: internal/pkg/cookie/cookie\.go
         text: "Magic number: 24, in <operation> detected" # too obviously
+      - linters:
+          - goconst
+        path: internal/app/delivery/http/register\.go
+        text: "string `/create` has 3 occurrences, make it a constant" # more readable
     paths:
       - build
       - db

@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	let currentPath = window.location.pathname;
 	let currentQuery = window.location.search;
 
-	// skip for book page
-	if (currentPath.startsWith("/library/book")) {
+	// skip for book pages
+	if (currentPath.startsWith("/book")) {
 		return
 	}
 

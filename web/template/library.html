@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block css %}
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/list_movies.css"> -->
+<link rel="stylesheet" type="text/css" href="/static/css/library.css">
+<script type="text/javascript" src="/static/js/base.js"></script>
+<script type="text/javascript" src="/static/js/library.js"></script>
+{% endblock %}
+
+{% block title %}Library | BookShelf{% endblock %}
+
+{% block content %}
+<h1 class="title">Library</h1>
+
+<div class="content flex-content-column">
+	<h3 class="subtitle">Your book collection</h3>
+
+	{% if total %}
+	<h4 id="found-total"><span class="accent">Found movies: {{ total|floatformat:0 }}</span></h4>
+	{% else %}
+	<h4 id="found-total"><span class="accent">Found movies: 0</span></h4>
+	{% endif %}
+
+	<div class="flex-content-row">
+		<div id="flex-settings">
+			<a class="settings manage-btn" href="/book/create">Create book record</a>
+			<a class="settings manage-btn" href="/book/export">Export to xls</a>
+
+			<div id="order-settings" class="settings">
+				<p class="setting-header">Sort</p>
+
+				<a class="sort-field-link" data-link-value="title" href="?sortField=title">title</a>
+				<a class="sort-field-link" data-link-value="year" href="?sortField=year">year</a>
+				<a class="sort-field-link" data-link-value="author" href="?sortField=author">author</a>
+
+				<div class="links-switch">
+					<a class="sort-order-link asc-order" data-link-value="asc" href="?sortOrder=asc">ASC</a>
+					<a class="sort-order-link desc-order" data-link-value="desc" href="?sortOrder=desc">DESC</a>
+				</div>
+			</div>
+
+			<form id="filter-form" class="settings" action="" method="get">
+				<p class="setting-header">Filters</p>
+
+				<input id="sort-field-in-filter" type="hidden" name="sortField" value="">
+				<input id="sort-order-in-filter" type="hidden" name="sortOrder" value="">
+
+
+				<div class="filters-separator"></div>
+				<div class="filter-setting" id="filter-type">
+					<p class="accent">type</p>
+
+					<div class="radio-button">
+						<input type="radio" name="type" value="all" id="type-all" />
+						<label for="type-all">all</label>
+					</div>
+
+					<div class="radio-button">
+						<input type="radio" name="type" value="read" id="type-read" />
+						<label for="type-read">read</label>
+					</div>
+
+					<div class="radio-button">
+						<input type="radio" name="type" value="want" id="type-want" />
+						<label for="type-want">want</label>
+					</div>
+				</div>
+
+				<div class="filters-separator"></div>
+				<div class="filter-setting">
+					<p class="accent">genres</p>
+
+					<div id="filter-genre-list">
+						{% for genre in genreList %}
+						<label class="checkbox-btn">
+							<input name="genres" type="checkbox" value="{{ genre.Name }}"><span>{{ genre.Name }}</span>
+						</label>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="filters-separator"></div>
+				<div class="filter-setting">
+					<p class="accent">year from</p>
+					<input class="filter-year" id="filter-year-from" type="number" name="yearFrom" min="0" max="2100"
+						value="0">
+				</div>
+
+				<div class="filters-separator"></div>
+				<div class="filter-setting">
+					<p class="accent">year to</p>
+					<input class="filter-year" id="filter-year-to" type="number" name="yearTo" min="0" max="2100"
+						value="2100">
+				</div>
+
+				<div class="filters-separator"></div>
+				<button class="filters-submit-btn" type="submit">apply</button>
+			</form>
+		</div>
+
+		<div class="list-books list-books-category">
+			{% for book in bookList %}
+			<div class="book">
+				<div class="book-info">
+					<div class="book-header">
+						<a class="edit-img" href="/book/edit/{{ book.ID|floatformat:0 }}">
+							<svg width="22" height="22" viewBox="0 0 22 22" fill="ff0000"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M0 17.3556V22H4.64444L18.0889 8.43333L13.4444 3.78889L0 17.3556ZM21.6333 4.88889C22.1222 4.4 22.1222 3.66667 21.6333 3.17778L18.8222 0.366667C18.3333 -0.122222 17.6 -0.122222 17.1111 0.366667L14.9111 2.56667L19.5556 7.21111L21.6333 4.88889Z" />
+							</svg>
+						</a>
+
+						<div class="book-title">
+							<p>{{ book.Title|default:"-"}}</p>
+						</div>
+
+						<div class="type-img">
+							{% if book.IsRead %}
+							<svg width="24" height="22" viewBox="0 0 24 22" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M23.855 10.3727C21.5954 5.82613 17.1221 2.75 12 2.75C6.87789 2.75 2.40331 5.82828 0.144977 10.3731C0.0496613 10.5675 0 10.7823 0 11.0002C0 11.2181 0.0496613 11.4329 0.144977 11.6273C2.40456 16.1739 6.87789 19.25 12 19.25C17.1221 19.25 21.5966 16.1717 23.855 11.6269C23.9503 11.4325 24 11.2177 24 10.9998C24 10.7819 23.9503 10.5671 23.855 10.3727ZM12 17.1875C10.8133 17.1875 9.65325 16.8246 8.66656 16.1447C7.67986 15.4648 6.91083 14.4985 6.4567 13.3679C6.00257 12.2372 5.88375 10.9931 6.11527 9.79288C6.34678 8.59262 6.91822 7.49011 7.75734 6.62478C8.59645 5.75944 9.66555 5.17014 10.8294 4.93139C11.9933 4.69265 13.1997 4.81518 14.2961 5.2835C15.3924 5.75181 16.3295 6.54488 16.9888 7.56241C17.6481 8.57994 18 9.77623 18 11C18.0004 11.8127 17.8454 12.6174 17.544 13.3683C17.2426 14.1192 16.8007 14.8015 16.2435 15.3761C15.6862 15.9507 15.0247 16.4065 14.2965 16.7173C13.5684 17.0281 12.788 17.1879 12 17.1875ZM12 6.875C11.6429 6.88015 11.2882 6.93492 10.9454 7.03785C11.228 7.43388 11.3636 7.92124 11.3276 8.41154C11.2917 8.90184 11.0865 9.36261 10.7494 9.71029C10.4122 10.058 9.96539 10.2695 9.48995 10.3066C9.01451 10.3437 8.54192 10.2039 8.15789 9.91246C7.93921 10.7433 7.97869 11.6239 8.27076 12.4304C8.56283 13.2369 9.0928 13.9287 9.78607 14.4083C10.4793 14.8879 11.301 15.1312 12.1354 15.104C12.9698 15.0768 13.7749 14.7805 14.4374 14.2567C15.1 13.733 15.5865 13.0081 15.8287 12.1842C16.0708 11.3603 16.0563 10.4789 15.7872 9.66392C15.5181 8.84897 15.008 8.14156 14.3286 7.64127C13.6492 7.14097 12.8348 6.87297 12 6.875Z"
+									fill="#585858" />
+							</svg>
+							{% else %}
+							<svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M20.5533 8.6075C20.3917 8.1235 19.9833 7.77631 19.4883 7.70069L14.4634 6.94788L12.2015 2.14638C11.9767 1.67063 11.5168 1.375 11.0005 1.375C10.4841 1.375 10.0242 1.67063 9.79939 2.14638L7.57052 6.93069L2.51258 7.70069C2.01758 7.77631 1.6099 8.1235 1.44765 8.6075C1.28196 9.10456 1.40433 9.64356 1.76733 10.0141L5.42552 13.7582L4.56133 19.0355C4.47539 19.5628 4.68852 20.0791 5.1189 20.3823C5.53277 20.6759 6.0649 20.7048 6.50765 20.4607L10.9688 17.9692L15.4933 20.4607C15.9374 20.7048 16.4681 20.6745 16.882 20.3823C17.3124 20.0791 17.5262 19.5628 17.4396 19.0355L16.574 13.7514L20.2336 10.0141C20.5966 9.64356 20.719 9.10456 20.5533 8.6075Z"
+									fill="#585858" />
+							</svg>
+							{% endif %}
+						</div>
+					</div>
+
+					<div class="book-info-item book-year">
+						{% if book.Year %}
+						<p>{{ book.Year }} year</p>
+						{% else %}
+						<p>-</p>
+						{% endif %}
+					</div>
+
+					<div class="book-info-item">
+						<label class="movie-info-label">Author:</label>
+						<p>{{ book.Author|default:"-" }}</p>
+					</div>
+
+					<div class="book-info-item">
+						<label class="movie-info-label">Genre:</label>
+						<p>{{ book.Genre.Name|default:"-" }}</p>
+					</div>
+
+					<div class="book-info-item book-desc">
+						<p>{{ book.Description|default:"Description missing" }}</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+</div>
+{% endblock %}

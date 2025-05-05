@@ -52,3 +52,28 @@ func RegisterGenreEndpoints(
 		genreGroup.Post("/remove/:genreID", genreHandler.remove)
 	}
 }
+
+func RegisterBookEndpoints(
+	router fiber.Router,
+	bookUC usecase.BookUsecase,
+	genreUC usecase.GenreUsecase,
+	tokenSigningKey []byte,
+	valid validator.Validator) {
+
+	bookHandler := newBookHandler(bookUC, genreUC, tokenSigningKey, valid)
+	router.Get("/library",
+		middleware.CookieParser(), middleware.ToLoginIfNoCookie(),
+		bookHandler.listHTML)
+	bookGroup := router.Group("/book", middleware.CookieParser(), middleware.ToLoginIfNoCookie())
+	{
+		bookGroup.Get("/create", bookHandler.createHTML)
+		bookGroup.Post("/create", bookHandler.create)
+
+		bookGroup.Get("/edit/:genreID", bookHandler.editHTML)
+		bookGroup.Post("/edit/:genreID", bookHandler.edit)
+
+		// bookGroup.Post("/export", bookHandler.export)
+
+		bookGroup.Post("/remove/:genreID", bookHandler.remove)
+	}
+}

@@ -1,0 +1,196 @@
+/* ----------- *
+ * back button *
+ * ----------- */
+
+/* title with back button */
+.book-title {
+    text-align: center;
+    margin-bottom: 40px;
+
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.back-button-container {
+    width: 100%;
+    display: flex;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    flex-grow: 1;
+}
+
+.back-button-subcontainer {
+    width: 40%;
+
+    display: flex;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+#back-button {
+    display: flex;
+}
+
+#back-button svg {
+    fill: var(--white);
+    height: 36px;
+    width: 36px;
+}
+
+#back-button:hover svg {
+    fill: var(--light-red);
+}
+
+/* ---- *
+ * main *
+ * ---- */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 40%;
+}
+
+/* to set full-width for form elem */
+.form-elem {
+    width: 100%;
+}
+
+/* all inputs in form */
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* every input in form */
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input,
+textarea,
+select {
+    border: solid 3px var(--light-gray);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+input {
+    padding: 8px 10px;
+
+    font-size: 20px;
+}
+
+.form-elem>label {
+    margin: 10px 0 0 0;
+}
+
+textarea {
+    resize: vertical;
+    padding: 8px 10px;
+}
+
+select {
+    padding: 8px 7px;
+}
+
+.create-btn,
+.edit-submit-buttons>button {
+    padding: 10px 25px;
+
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: var(--light-gray);
+    user-select: none;
+}
+
+/* create button in form */
+.create-btn {
+    margin-top: 15px;
+}
+
+.create-btn:hover {
+    background-color: var(--gray);
+}
+
+.edit-submit-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.edit-submit-buttons>button {
+    min-width: 120px;
+}
+
+.edit-submit-buttons>button:hover {
+    background-color: var(--gray);
+}
+
+/* ---------------- *
+ * book type switch *
+ * ---------------- */
+
+.type-container {
+    margin-top: 10px;
+}
+
+.radio-toggle {
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 3px solid var(--light-gray);
+    position: relative;
+    height: 50px;
+}
+
+.radio-toggle input[type="radio"] {
+    display: none;
+}
+
+.radio-toggle label {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    color: var(--dark-white);
+}
+
+.radio-toggle label:first-of-type {
+    border-right: 3px solid var(--light-gray);
+}
+
+.radio-toggle input[type="radio"]:checked+label {
+    color: var(--white);
+    background-color: var(--light-gray);
+}
+
+/* Создаем фон для активной кнопки */
+.radio-toggle::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+.radio-toggle input[type="radio"]:nth-of-type(2):checked~ ::before {
+    transform: translateX(100%);
+}

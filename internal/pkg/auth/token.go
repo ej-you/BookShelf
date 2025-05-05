@@ -22,7 +22,7 @@ func NewToken(secretKey []byte, expireDuration time.Duration, userID string) (st
 }
 
 // Parse user ID from given auth token.
-func ParseUserIDFromToken(secretKey any, authToken string) (string, error) {
+func ParseUserIDFromToken(secretKey []byte, authToken string) (string, error) {
 	// parse token object from token string representation
 	jwtToken, err := jwt.Parse(authToken, func(_ *jwt.Token) (any, error) {
 		return secretKey, nil

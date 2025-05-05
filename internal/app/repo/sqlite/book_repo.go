@@ -56,7 +56,7 @@ func (u *bookRepoDB) Update(book *entity.Book) error {
 // ID field must be presented.
 // Fill given struct pointer value.
 func (u *bookRepoDB) GetByID(book *entity.Book) error {
-	err := u.dbStorage.Preload("Genre").First(book, book.ID).Error
+	err := u.dbStorage.Preload("Genre").Where("id = ?", book.ID).First(book).Error
 
 	if goerrors.Is(err, gorm.ErrRecordNotFound) {
 		return errors.ErrNotFound
@@ -66,7 +66,7 @@ func (u *bookRepoDB) GetByID(book *entity.Book) error {
 
 // Get books by given sort and filters with genre preloading.
 // UserID field must be presented.
-// Fill given struct pointer value (Books).
+// Fill given struct pointer value (Books field).
 func (u *bookRepoDB) GetList(bookList *entity.BookList) error {
 	// base select params
 	selectQuery := u.dbStorage.
@@ -81,9 +81,10 @@ func (u *bookRepoDB) GetList(bookList *entity.BookList) error {
 }
 
 func (u *bookRepoDB) addSort(selectQuery *gorm.DB, bookList *entity.BookList) *gorm.DB {
-	// skip sort if sort field is not specified
+	// apply sort by title if sort field is not specified
 	if bookList.SortField == nil {
-		return selectQuery
+		titleField := "title"
+		bookList.SortField = &titleField
 	}
 	// set asc order if sort order is not specified
 	if bookList.SortOrder == nil {
@@ -99,7 +100,7 @@ func (u *bookRepoDB) addFilter(selectQuery *gorm.DB, bookList *entity.BookList) 
 		case "read":
 			selectQuery = selectQuery.Where("is_read = 1")
 		case "want":
-			selectQuery = selectQuery.Where("type = 0")
+			selectQuery = selectQuery.Where("is_read = 0")
 		}
 	}
 	if bookList.FilterYearFrom != nil && *bookList.FilterYearFrom != _filterYearFromMin {

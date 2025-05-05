@@ -16,3 +16,11 @@ type GenreUsecase interface {
 	Remove(genre *entity.Genre) error
 	GetAll() (*entity.GenreList, error)
 }
+
+type BookUsecase interface {
+	Create(book *entity.Book) error
+	Remove(book *entity.Book) error
+	Update(book *entity.Book) error
+	GetByID(book *entity.Book) error
+	GetList(bookList *entity.BookList) error
+}
