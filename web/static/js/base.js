@@ -84,9 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Returns list of theme css root vars
 function getCssThemeVars() {
-	// получаем все переменные, установленные в :root
-	const rootStyle = document.documentElement.style;
-
+	// get all vars, set in :root
 	let styleList = document.styleSheets[1].cssRules[0].style
 
 	const cssRootVars = [];
@@ -96,8 +94,6 @@ function getCssThemeVars() {
 			cssRootVars.push(styleList[i].replace(/^--theme-/, ""));
 		}
 	}
-
-	console.log(cssRootVars);
 	return cssRootVars
 }
 

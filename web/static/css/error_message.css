@@ -8,14 +8,14 @@
 	width: 400px;
 	height: 200px;
 
-	background-color: var(--light-gray);
+	background-color: var(--theme-index-auth-btn-fill);
 	border-radius: 20px;
-	border: solid 3px var(--light-red);
-	box-shadow: 0px 0px 25px 5px var(--light-black);
+	border: solid 3px var(--theme-setting-selected-btn-border);
+	box-shadow: var(--theme-shadow);
 }
 
 #error-message-title {
-	color: var(--light-red);
+	color: var(--theme-accent);
 	text-align: center;
 	margin-top: 1px;
 	margin-bottom: 10px;
