@@ -29,7 +29,7 @@ func ExportBook(saveToFile string, books entity.Books) error {
 	file.SetCellValue(_sheetName, "F1", "Status")
 
 	// set Books data
-	for idx := 0; idx <= len(books); idx++ {
+	for idx := 0; idx < len(books); idx++ {
 		rowIdx := strconv.Itoa(idx + 2)
 		file.SetCellValue(_sheetName, "A"+rowIdx, books[idx].Title)
 		if books[idx].Genre.Name != "" {
