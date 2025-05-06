@@ -1,12 +1,140 @@
 :root {
-	--white: #ceceb5;
-	--dark-white: #6f6f6f;
-	--light-gray: #2e2e2e;
-	--gray: #2a2a2a;
-	--dark-gray: #1b1b1b;
-	--light-black: #111111;
+	/* palette */
 
 	--light-red: #ab785b;
+
+	--white1: #ceceb5;
+	--white2: #c2bcbc;
+	--white3: #e0e0e0;
+	--white4: #ada6a6;
+	--white5: #d1d1d1;
+
+	--gray1: #2e2e2e;
+	--gray2: #2a2a2a;
+	--gray3: #363636;
+	--gray4: #505050;
+	--gray5: #626161;
+	--gray6: #7b7b7b;
+
+	--black1: #1b1b1b;
+
+	/* base */
+
+	--shadow-dark: 0px 0px 13px 1px rgba(0, 0, 0, 0.5);
+	--shadow-light: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
+	--theme-shadow: var(--shadow-dark);
+
+	--accent-dark: var(--light-red);
+	--accent-light: var(--light-red);
+	--theme-accent: var(--accent-dark);
+
+	--background-dark: var(--black1);
+	--background-light: var(--white2);
+	--theme-background: var(--background-dark);
+
+	--text-dark: var(--white1);
+	--text-light: var(--gray3);
+	--theme-text: var(--text-dark);
+
+	--menu-btn-fill-hover-dark: var(--gray2);
+	--menu-btn-fill-hover-light: var(--white4);
+	--theme-menu-btn-fill-hover: var(--menu-btn-fill-hover-dark);
+
+	/* index (also used for all other pages) */
+
+	--index-auth-btn-fill-dark: var(--gray1);
+	--index-auth-btn-fill-light: var(--white3);
+	--theme-index-auth-btn-fill: var(--index-auth-btn-fill-dark);
+
+	--index-auth-btn-fill-hover-dark: var(--gray2);
+	--index-auth-btn-fill-hover-light: var(--white4);
+	--theme-index-auth-btn-fill-hover: var(--index-auth-btn-fill-hover-dark);
+
+	/* settings */
+
+	--logout-btn-fill-dark: var(--gray1);
+	--logout-btn-fill-light: var(--white3);
+	--theme-logout-btn-fill: var(--logout-btn-fill-dark);
+
+	--logout-btn-fill-hover-dark: var(--gray2);
+	--logout-btn-fill-hover-light: var(--white4);
+	--theme-logout-btn-fill-hover: var(--logout-btn-fill-hover-dark);
+
+	--setting-btn-fill-dark: var(--gray1);
+	--setting-btn-fill-light: var(--white3);
+	--theme-setting-btn-fill: var(--setting-btn-fill-dark);
+
+	--setting-btn-fill-hover-dark: var(--gray2);
+	--setting-btn-fill-hover-light: var(--white4);
+	--theme-setting-btn-fill-hover: var(--setting-btn-fill-hover-dark);
+
+	--setting-selected-btn-border-dark: var(--white1);
+	--setting-selected-btn-border-light: var(--gray3);
+	--theme-setting-selected-btn-border: var(--setting-selected-btn-border-dark);
+
+	/* genre */
+
+	--genre-remove-cross-fill-dark: var(--white1);
+	--genre-remove-cross-fill-light: var(--black1);
+	--theme-genre-remove-cross-fill: var(--genre-remove-cross-fill-dark);
+
+	/* book */
+
+	--book-back-btn-fill-dark: var(--white1);
+	--book-back-btn-fill-light: var(--black1);
+	--theme-book-back-btn-fill: var(--book-back-btn-fill-dark);
+
+	--book-type-selected-btn-text-dark: var(--white1);
+	--book-type-selected-btn-text-light: var(--gray3);
+	--theme-book-type-selected-btn-text: var(--book-type-selected-btn-text-dark);
+
+	--book-type-default-btn-text-dark: var(--gray4);
+	--book-type-default-btn-text-light: var(--white4);
+	--theme-book-type-default-btn-text: var(--book-type-default-btn-text-dark);
+
+	--book-type-selected-btn-fill-dark: var(--gray3);
+	--book-type-selected-btn-fill-light: var(--white3);
+	--theme-book-type-selected-btn-fill: var(--book-type-selected-btn-fill-dark);
+
+	/* library */
+
+	--library-settings-fill-dark: var(--gray1);
+	--library-settings-fill-light: var(--white3);
+	--theme-library-settings-fill: var(--library-settings-fill-dark);
+
+	--library-settings-fill-hover-dark: var(--gray2);
+	--library-settings-fill-hover-light: var(--white5);
+	--theme-library-settings-fill-hover: var(--library-settings-fill-hover-dark);
+
+	--library-edit-svg-fill-dark: var(--white1);
+	--library-edit-svg-fill-light: var(--gray2);
+	--theme-library-edit-svg-fill: var(--library-edit-svg-fill-dark);
+
+	--library-type-svg-fill-dark: var(--gray5);
+	--library-type-svg-fill-light: var(--white4);
+	--theme-library-type-svg-fill: var(--library-type-svg-fill-dark);
+
+	--library-settings-border-dark: var(--gray5);
+	--library-settings-border-light: var(--white4);
+	--theme-library-settings-border: var(--library-settings-border-dark);
+
+	--library-settings-fill-selected-dark: var(--gray5);
+	--library-settings-fill-selected-light: var(--white4);
+	--theme-library-settings-fill-selected: var(--library-settings-fill-selected-dark);
+
+	--library-settings-apply-btn-fill-hover-dark: var(--gray4);
+	--library-settings-apply-btn-fill-hover-light: var(--white2);
+	--theme-library-settings-apply-btn-fill-hover: var(--library-settings-apply-btn-fill-hover-dark);
+
+	--library-settings-text-hover-dark: var(--gray6);
+	--library-settings-text-hover-light: var(--white2);
+	--theme-library-settings-text-hover: var(--library-settings-text-hover-dark);
+
+	--library-separator-dark: var(--gray5);
+	--library-separator-light: var(--black1);
+	--theme-library-separator: var(--library-separator-dark);
+
+	/* font options */
 
 	--font-Monospace: monospace;
 	--font-Arial: Arial;
@@ -15,8 +143,8 @@
 }
 
 body {
-	background-color: var(--dark-gray);
-	color: var(--white);
+	background-color: var(--theme-background);
+	color: var(--theme-text);
 	font-family: var(--font-Sans-Serif);
 }
 
@@ -27,7 +155,7 @@ h1 {
 }
 
 a {
-	color: var(--white);
+	color: var(--theme-text);
 	user-select: none;
 }
 
@@ -46,8 +174,6 @@ nav {
 
 .nav-elem {
 	font-size: 23px;
-	/* margin-left: 15px;
-	margin-right: 15px; */
 }
 
 .nav-elem>* {
@@ -55,7 +181,7 @@ nav {
 	width: 100%;
 	height: 100%;
 
-	color: var(--white);
+	color: var(--theme-text);
 }
 
 .right-nav-container {
@@ -89,17 +215,8 @@ nav {
 	align-items: center;
 }
 
-.nav-menu-button-elem a svg {
-	height: 36px;
-	width: 36px;
-}
-
-.nav-menu-button-elem a:hover svg {
-	fill: var(--light-red);
-}
-
 .nav-menu-button-elem a:hover {
-	background-color: var(--light-gray);
+	background-color: var(--theme-menu-btn-fill-hover);
 }
 
 /* main title for every page in header */
@@ -112,7 +229,7 @@ nav {
 /* text with accent (used in span) */
 .accent {
 	font-style: italic;
-	color: var(--light-red);
+	color: var(--theme-accent);
 }
 
 /* main container */

@@ -27,10 +27,11 @@ form {
 
 input {
 	margin: 5px 0;
-	padding: 8px 15px;
+	padding: 12px 15px;
 
 	font-size: 20px;
-	border: solid 3px var(--light-gray);
+	/* border: solid 3px var(--theme-index-auth-btn-fill); */
+	background-color: var(--theme-index-auth-btn-fill);
 	border-radius: 10px;
 }
 
@@ -45,12 +46,12 @@ label {
 
 	font-size: 23px;
 	border-radius: 10px;
-	background-color: var(--light-gray);
+	background-color: var(--theme-index-auth-btn-fill);
 	user-select: none;
 }
 
 .submit-btn:hover {
-	background-color: var(--gray);
+	background-color: var(--theme-index-auth-btn-fill-hover);
 }
 
 /* line with link to login/signup page under form */
@@ -67,7 +68,7 @@ label {
 
 .to-signup a,
 .to-login a {
-	color: var(--light-red);
+	color: var(--theme-accent);
 }
 
 .to-signup a:hover,

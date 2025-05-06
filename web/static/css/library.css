@@ -35,8 +35,8 @@
 	padding: 20px;
 	gap: 5px;
 
-	background-color: var(--dark-gray);
-	box-shadow: 0px 0px 25px 1px var(--light-black);
+	background-color: var(--theme-library-settings-fill);
+	box-shadow: var(--theme-shadow);
 	border-radius: 10px;
 	width: 350px;
 }
@@ -51,19 +51,19 @@
 	padding: 20px;
 	gap: 5px;
 
-	background-color: var(--dark-gray);
-	box-shadow: 0px 0px 25px 1px var(--light-black);
+	background-color: var(--theme-library-settings-fill);
+	box-shadow: var(--theme-shadow);
 	border-radius: 10px;
 	width: 350px;
 }
 
 .manage-btn:hover {
-	background-color: var(--gray);
+	background-color: var(--theme-library-settings-fill-hover);
 }
 
 .setting-header {
 	font-size: 25px;
-	color: var(--light-red);
+	color: var(--theme-accent);
 }
 
 .sort-field-link {
@@ -72,13 +72,13 @@
 	padding: 0px 15px;
 	line-height: 35px;
 
-	border: 2px solid var(--light-gray);
+	border: 2px solid var(--theme-library-settings-border);
 	border-radius: 6px;
 	user-select: none;
 }
 
 .sort-field-link:hover {
-	color: var(--dark-white);
+	color: var(--theme-library-settings-text-hover);
 }
 
 .links-switch {
@@ -94,15 +94,14 @@
 .sort-order-link {
 	display: flex;
 	justify-content: center;
-	padding: 0px 15px;
-	line-height: 35px;
-	border: 2px solid var(--light-gray);
+	line-height: 33px;
+	border: 2px solid var(--theme-library-settings-border);
 	cursor: pointer;
 	user-select: none;
 }
 
 .sort-order-link:hover {
-	color: var(--dark-white);
+	color: var(--theme-library-settings-text-hover);
 }
 
 .asc-order {
@@ -112,7 +111,11 @@
 
 .desc-order {
 	border-radius: 0 5px 5px 0;
-	border-right: 2px solid var(--light-gray);
+	border-right: 2px solid var(--theme-library-settings-border);
+}
+
+.sort-link-selected {
+	background-color: var(--theme-library-settings-fill-selected);
 }
 
 /* --------------------- *
@@ -133,17 +136,17 @@
 	padding: 0px 15px;
 	line-height: 35px;
 
-	border: 2px solid var(--light-gray);
+	border: 2px solid var(--theme-library-settings-border);
 	border-radius: 5px;
 	user-select: none;
 }
 
 .radio-button label:hover {
-	color: var(--dark-white);
+	color: var(--theme-library-settings-text-hover);
 }
 
 .radio-button input[type=radio]:checked+label {
-	background: var(--light-gray);
+	background: var(--theme-library-settings-border);
 }
 
 /* ---------------------------- *
@@ -164,7 +167,7 @@
 	margin: 15px 35%;
 	height: 1px;
 
-	background-color: var(--light-gray);
+	background-color: var(--theme-library-separator);
 }
 
 #filter-genre-list {
@@ -178,7 +181,7 @@
 .filters-submit-btn {
 	display: inline-block;
 	padding: 4px 10px;
-	background-color: var(--light-gray);
+	background-color: var(--theme-library-settings-fill-selected);
 	border-radius: 5px;
 
 	line-height: 30px;
@@ -186,7 +189,7 @@
 }
 
 .filters-submit-btn:hover {
-	background-color: var(--gray);
+	background-color: var(--theme-library-settings-apply-btn-fill-hover);
 }
 
 /* ---------------- *
@@ -209,68 +212,21 @@
 	cursor: pointer;
 	padding: 2px 10px;
 	line-height: 30px;
-	border: 2px solid var(--light-gray);
+	border: 2px solid var(--theme-library-settings-border);
 	border-radius: 50px;
 }
 
 .checkbox-btn input[type=checkbox]:checked+span {
-	background: var(--light-gray);
+	background: var(--theme-library-settings-fill-selected);
 }
 
 .checkbox-btn:hover {
-	color: var(--dark-white);
+	color: var(--theme-library-settings-text-hover);
 }
 
 /* ----------------------- *
  * end of checkbox buttons *
  * ----------------------- */
-
-/* ----------- *
- * range input *
- * ----------- */
-
-.range-box {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	border: 2px solid var(--light-gray);
-	border-radius: 5px;
-}
-
-.range {
-	width: 400px;
-	height: 15px;
-	appearance: none;
-	background: var(--light-gray);
-	outline: none;
-	border-radius: 5px;
-	overflow: hidden;
-}
-
-.range::-webkit-slider-thumb {
-	appearance: none;
-	width: 15px;
-	height: 15px;
-	background: var(--light-gray);
-	border-radius: 50%;
-	border: 2px solid var(--dark-white);
-	box-shadow: -407px 0 0 401px var(--dark-white);
-	cursor: pointer;
-}
-
-.range-value {
-	position: relative;
-	text-align: center;
-	width: 50px;
-	color: var(--light-red);
-	margin-left: 10px;
-}
-
-/* ------------------ *
- * end of range input *
- * ------------------ */
 
 .filter-year {
 	-moz-appearance: textfield;
@@ -279,7 +235,7 @@
 
 	text-align: center;
 	padding: 8px;
-	border: 2px solid var(--light-gray);
+	border: 2px solid var(--theme-library-settings-border);
 	border-radius: 5px;
 }
 
@@ -304,15 +260,10 @@
 	grid-auto-flow: row;
 }
 
-/* styles for stared/want/watched pages */
+/* styles for book list */
 .list-books-category {
 	grid-template-columns: repeat(3, 1fr);
 
-}
-
-/* styles for search page */
-.list-books-search {
-	grid-template-columns: repeat(3, 1fr);
 }
 
 .book {
@@ -323,8 +274,8 @@
 	flex-grow: 1;
 	min-width: 400px;
 
-	background-color: var(--dark-gray);
-	box-shadow: 0px 0px 25px 1px var(--light-black);
+	background-color: var(--theme-library-settings-fill);
+	box-shadow: var(--theme-shadow);
 	border-radius: 10px;
 }
 
@@ -363,7 +314,7 @@
 }
 
 .edit-img:hover>svg>path {
-	fill: var(--light-red);
+	fill: var(--theme-accent);
 }
 
 .type-img>svg {
@@ -372,11 +323,11 @@
 }
 
 .edit-img>svg>path {
-	fill: var(--white);
+	fill: var(--theme-library-edit-svg-fill);
 }
 
 .type-img>svg>path {
-	fill: var(--light-gray);
+	fill: var(--theme-library-type-svg-fill);
 }
 
 .book-info-item {
@@ -387,7 +338,7 @@
 }
 
 .book-info-item label {
-	color: var(--light-red);
+	color: var(--theme-accent);
 	margin-right: 5px;
 	cursor: default;
 }

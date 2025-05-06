@@ -36,13 +36,17 @@ function setupSortLinks() {
 	// sort fields
 	document.querySelectorAll(".sort-field-link").forEach((sortFieldLink) => {
 		if (sortFieldLink.dataset.linkValue === sortField) {
-			sortFieldLink.style.backgroundColor = "#2e2e2e"
+			sortFieldLink.classList.add("sort-link-selected")
+		} else {
+			sortFieldLink.classList.remove("sort-link-selected")
 		}
 	});
 	// sort orders
 	document.querySelectorAll(".sort-order-link").forEach((sortOrderLink) => {
 		if (sortOrderLink.dataset.linkValue === sortOrder) {
-			sortOrderLink.style.backgroundColor = "#2e2e2e"
+			sortOrderLink.classList.add("sort-link-selected")
+		} else {
+			sortOrderLink.classList.remove("sort-link-selected")
 		}
 	});
 	updateSortLinksHref(sortField, sortOrder)

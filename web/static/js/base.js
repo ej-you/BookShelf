@@ -82,9 +82,23 @@ document.addEventListener("DOMContentLoaded", function () {
 // + Apply theme and font +
 // +----------------------+
 
-// apply font for app
-function applyFont(font) {
-	document.body.style.fontFamily = `var(--font-${font})`
+// Returns list of theme css root vars
+function getCssThemeVars() {
+	// получаем все переменные, установленные в :root
+	const rootStyle = document.documentElement.style;
+
+	let styleList = document.styleSheets[1].cssRules[0].style
+
+	const cssRootVars = [];
+	for (let i = 0; i < styleList.length; i++) {
+		let styleName = styleList[i];
+		if (styleName.startsWith('--theme')) {
+			cssRootVars.push(styleList[i].replace(/^--theme-/, ""));
+		}
+	}
+
+	console.log(cssRootVars);
+	return cssRootVars
 }
 
 // returns current font name
@@ -94,7 +108,6 @@ function getFont() {
 	if (font == null) {
 		font = "Sans-Serif"
 	}
-
 	return font
 }
 
@@ -105,14 +118,37 @@ function getTheme() {
 	if (theme == null) {
 		theme = "Dark"
 	}
-
 	return theme
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-	let theme = getTheme();
-	let font = getFont();
+// apply font for app
+function applyFont(font) {
+	document.body.style.fontFamily = `var(--font-${font})`
+}
 
+// apply theme for app
+function applyTheme(theme) {
+	if (theme == "Dark") {
+		theme = "dark"
+	} else {
+		theme = "light"
+	}
+
+	let cssRootVars = getCssThemeVars()
+
+	let themeKey;
+	let themeValue;
+	cssRootVars.forEach(cssVar => {
+		themeKey = "--theme-" + cssVar
+		themeValue = `var(--${cssVar}-${theme})`
+		document.documentElement.style.setProperty(themeKey, themeValue)
+	})
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+	let font = getFont();
+	let theme = getTheme();
 
 	applyFont(font)
+	applyTheme(theme)
 });

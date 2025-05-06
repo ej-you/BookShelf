@@ -43,6 +43,7 @@ function themeChange(buttonElem) {
 	});
 
 	localStorage.setItem("theme", buttonElem.textContent);
+	applyTheme(buttonElem.textContent)
 }
 
 function fontChange(buttonElem) {

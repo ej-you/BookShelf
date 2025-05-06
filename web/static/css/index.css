@@ -9,7 +9,7 @@
 }
 
 .description-p a {
-	color: var(--light-red);
+	color: var(--theme-accent);
 }
 
 .description-p a:hover {
@@ -33,12 +33,12 @@
 	flex: 1;
 	font-size: 23px;
 	border-radius: 10px;
-	background-color: var(--light-gray);
+	background-color: var(--theme-index-auth-btn-fill);
 	user-select: none;
 }
 
 .link-button:hover {
-	background-color: var(--gray);
+	background-color: var(--theme-index-auth-btn-fill-hover);
 }
 
 .link-button a {

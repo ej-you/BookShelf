@@ -35,13 +35,13 @@
 }
 
 #back-button svg {
-    fill: var(--white);
+    fill: var(--theme-book-back-btn-fill);
     height: 36px;
     width: 36px;
 }
 
 #back-button:hover svg {
-    fill: var(--light-red);
+    fill: var(--theme-accent);
 }
 
 /* ---- *
@@ -78,7 +78,7 @@ form {
 input,
 textarea,
 select {
-    border: solid 3px var(--light-gray);
+    background-color: var(--theme-index-auth-btn-fill);
     border-radius: 5px;
     margin: 5px 0;
 }
@@ -108,7 +108,7 @@ select {
 
     font-size: 20px;
     border-radius: 5px;
-    background-color: var(--light-gray);
+    background-color: var(--theme-index-auth-btn-fill);
     user-select: none;
 }
 
@@ -118,7 +118,7 @@ select {
 }
 
 .create-btn:hover {
-    background-color: var(--gray);
+    background-color: var(--theme-index-auth-btn-fill-hover);
 }
 
 .edit-submit-buttons {
@@ -133,7 +133,7 @@ select {
 }
 
 .edit-submit-buttons>button:hover {
-    background-color: var(--gray);
+    background-color: var(--theme-index-auth-btn-fill-hover);
 }
 
 /* ---------------- *
@@ -149,7 +149,8 @@ select {
     display: flex;
     border-radius: 5px;
     overflow: hidden;
-    border: 3px solid var(--light-gray);
+    /* border: 3px solid var(--light-gray); */
+    background-color: var(--theme-index-auth-btn-fill);
     position: relative;
     height: 50px;
 }
@@ -167,16 +168,16 @@ select {
     font-weight: bold;
     position: relative;
     z-index: 1;
-    color: var(--dark-white);
+    color: var(--theme-book-type-default-btn-text);
 }
 
 .radio-toggle label:first-of-type {
-    border-right: 3px solid var(--light-gray);
+    border-right: 3px solid var(--theme-index-auth-btn-fill);
 }
 
 .radio-toggle input[type="radio"]:checked+label {
-    color: var(--white);
-    background-color: var(--light-gray);
+    color: var(--theme-book-type-selected-btn-text);
+    background-color: var(--theme-book-type-selected-btn-fill);
 }
 
 /* Создаем фон для активной кнопки */

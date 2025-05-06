@@ -27,18 +27,18 @@
 }
 
 .default {
-	border: solid 2px var(--light-gray);
-	background-color: var(--light-gray);
+	border: solid 2px var(--theme-setting-btn-fill);
+	background-color: var(--theme-setting-btn-fill);
 }
 
 .default:hover {
-	border: solid 2px var(--gray);
-	background-color: var(--gray);
+	border: solid 2px var(--theme-setting-btn-fill-hover);
+	background-color: var(--theme-setting-btn-fill-hover);
 }
 
 .selected {
-	border: solid 2px var(--white);
-	background-color: var(--light-gray);
+	border: solid 2px var(--theme-setting-selected-btn-border);
+	background-color: var(--theme-setting-btn-fill);
 	cursor: default;
 }
 
@@ -70,7 +70,7 @@
 	margin: 5px 0;
 	font-size: 23px;
 	border-radius: 10px;
-	background-color: var(--light-gray);
+	background-color: var(--theme-logout-btn-fill);
 
 	height: 80%;
 	width: 150px;
@@ -79,5 +79,5 @@
 }
 
 .link-button:hover {
-	background-color: var(--gray);
+	background-color: var(--theme-logout-btn-fill-hover);
 }
