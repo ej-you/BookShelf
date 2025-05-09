@@ -1,0 +1,15 @@
+./build/
+./deployment/
+
+./config/.env
+./.golangci.yml
+
+./LICENCE
+./README.md
+./Makefile
+
+./notes.txt
+
+./web/
+./migration/
+./media/
