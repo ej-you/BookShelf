@@ -1,6 +1,6 @@
 # BookShelf
 
-## Needed `env` variables
+## Needed `env` variables (in file `./config/.env` for docker)
 
 ```dotenv
 DB_PATH="/path/to/db/sqlite3.db"
