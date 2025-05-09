@@ -70,22 +70,30 @@ linters:
       - legacy
       - std-error-handling
     rules:
-      - linters:
+      - linters: # cannot occur
           - errcheck
         path: internal/app/app\.go
-        text: "Error return value of `fiberApp.ShutdownWithTimeout` is not checked" # cannot occur
-      - linters:
+        text: "Error return value of `fiberApp.ShutdownWithTimeout` is not checked"
+      - linters: # more readable
           - gocritic
         path: internal/app/delivery/http/register\.go
-        text: "unnecessaryBlock: block doesn't have definitions, can be simply deleted" # more readable
-      - linters:
+        text: "unnecessaryBlock: block doesn't have definitions, can be simply deleted"
+      - linters: # too obviously
           - mnd
         path: internal/pkg/cookie/cookie\.go
-        text: "Magic number: 24, in <operation> detected" # too obviously
-      - linters:
+        text: "Magic number: 24, in <operation> detected"
+      - linters: # more readable
           - goconst
         path: internal/app/delivery/http/register\.go
-        text: "string `/create` has 3 occurrences, make it a constant" # more readable
+        text: "string `/create` has 3 occurrences, make it a constant"
+      - path: cmd/migrator/commands/ # funcs return other funcs
+        linters:
+          - nestif
+      - linters: # more readable
+          - goconst
+        path: cmd/migrator/commands/
+        text: "string `Successfully!` has 3 occurrences, make it a constant"
+
     paths:
       - build
       - db

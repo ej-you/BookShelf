@@ -32,8 +32,10 @@ type (
 	}
 
 	DB struct {
-		Path string `env-required:"true" env:"DB_PATH"`
-		DSN  string
+		MigrationsURL string `env:"MIGRATIONS_URL" env-default:"file://migration"`
+		Path          string `env-required:"true" env:"DB_PATH"`
+		DSN           string
+		URL           string
 	}
 )
 
@@ -46,5 +48,7 @@ func New() (*Config, error) {
 	}
 	// create DSN for DB
 	cfg.DB.DSN = fmt.Sprintf("file:%s?_foreign_keys=on", cfg.DB.Path)
+	// create URL for DB
+	cfg.DB.URL = fmt.Sprintf("sqlite://%s", cfg.DB.Path)
 	return cfg, nil
 }

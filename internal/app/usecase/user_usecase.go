@@ -66,7 +66,7 @@ func (u *userUsecase) Login(user *entity.User) (*entity.UserWithToken, error) {
 	// password entered by user
 	enteredPasswd := user.Password
 
-	// get user from DB with email
+	// get user from DB with login
 	if err := u.userRepoDB.GetByLogin(user); err != nil {
 		return nil, fmt.Errorf("get user by login: %w", err)
 	}
