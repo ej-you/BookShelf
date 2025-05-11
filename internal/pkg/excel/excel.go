@@ -1,4 +1,6 @@
-// Package excel provides function to export Book data to excel file.
+// Package excel provides function to export Book data to Excel file.
+// Also this package have prototype of universal function to export
+// any struct slice to Excel file.
 package excel
 
 import (

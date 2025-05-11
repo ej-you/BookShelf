@@ -29,5 +29,5 @@ docker exec -it book_shelf_app /bin/sh -c "/app/migrator up"
 
 ## TODO
 
-- [ ] Create massive interface for export to Excel
-- [ ] Set up docker and docker compose
+- [x] Create massive interface for export to Excel (just prototype yet)
+- [x] Set up docker and docker compose
